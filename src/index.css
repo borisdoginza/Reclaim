@@ -1,0 +1,71 @@
+@import "tailwindcss";
+
+@theme {
+  --breakpoint-md: 760px;
+
+  --color-ink: #000000;
+  --color-paper: #ffffff;
+  --color-accent: #a8a8a6;
+  --color-secondary: #47473f;
+
+  --font-display: "Dela Gothic One", "Arial Black", sans-serif;
+  --font-body: "Instrument Sans", sans-serif;
+
+  --spacing-gutter: 20px;
+  --spacing-gutter-wide: 32px;
+  --spacing-header: 72px;
+  --spacing-header-wide: 88px;
+  --spacing-content-max: 1280px;
+  --spacing-brand-width: 112px;
+  --spacing-brand-height: 42px;
+  --spacing-menu-width: 20px;
+  --spacing-mobile-section: 64px;
+  --spacing-desktop-section: 120px;
+}
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    @apply box-border;
+  }
+
+  html {
+    @apply min-w-80 scroll-smooth;
+  }
+
+  body {
+    @apply m-0 min-h-screen min-w-80 bg-paper font-body text-ink;
+  }
+
+  button,
+  a {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  a {
+    @apply text-inherit no-underline;
+  }
+
+  img {
+    @apply max-w-full;
+  }
+
+  a:focus-visible,
+  button:focus-visible,
+  ul:focus-visible {
+    @apply outline-2 outline-offset-[3px] outline-secondary;
+  }
+
+  ::selection {
+    @apply bg-secondary text-paper;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      @apply !scroll-auto !transition-none;
+    }
+  }
+}
