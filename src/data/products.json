@@ -1,0 +1,90 @@
+[
+  {
+    "id": "001",
+    "name": "Vintage leather jacket",
+    "category": "Jacket",
+    "size": "M",
+    "condition": "Very good",
+    "price": "€00",
+    "image": "../assets/images/Leater jacket/It’s leather season again 🤎.jpg",
+    "alt": "Vintage leather jacket worn with dark trousers",
+    "sold": false
+  },
+  {
+    "id": "002",
+    "name": "Vintage velvet blazer",
+    "category": "Blazer",
+    "size": "L",
+    "condition": "Very good",
+    "price": "€00",
+    "image": "../assets/images/Velvet blazer/some of our new vintage velvet blazers.jpg",
+    "alt": "Vintage velvet blazer photographed on a concrete floor",
+    "sold": false
+  },
+  {
+    "id": "003",
+    "name": "Patterned vintage knit",
+    "category": "Knitwear",
+    "size": "M",
+    "condition": "Good",
+    "price": "€00",
+    "image": "../assets/images/Vintage Missoni top/missoni_top_1.png",
+    "alt": "Colourful patterned vintage knit photographed on a concrete floor",
+    "sold": false
+  },
+  {
+    "id": "004",
+    "name": "Vintage utility vest",
+    "category": "Vest",
+    "size": "L",
+    "condition": "Very good",
+    "price": "€00",
+    "image": "../assets/images/vest-3/New vintage vests in the store 🎣.jpg",
+    "alt": "Vintage utility vest with multiple pockets",
+    "sold": false
+  },
+  {
+    "id": "005",
+    "name": "Vintage track jacket",
+    "category": "Jacket",
+    "size": "L",
+    "condition": "Good",
+    "price": "€00",
+    "image": "../assets/images/zip-1/We are fully prepared for the new season 🍂☁️(1).jpg",
+    "alt": "Vintage colour-block track jacket photographed on a concrete floor",
+    "sold": false
+  },
+  {
+    "id": "006",
+    "name": "Embroidered vintage vest",
+    "category": "Vest",
+    "size": "M",
+    "condition": "Very good",
+    "price": "€00",
+    "image": "../assets/images/shirt-2/Some new pieces & details 🔎(3).jpg",
+    "alt": "Black vintage vest with light embroidered details",
+    "sold": false
+  },
+  {
+    "id": "007",
+    "name": "Vintage denim jacket",
+    "category": "Jacket",
+    "size": "L",
+    "condition": "Very good",
+    "price": "€00",
+    "image": "../assets/images/jacket-4/Some of our new vintage pieces for autumn ☁️.jpg",
+    "alt": "Vintage denim jacket photographed on a concrete floor",
+    "sold": false
+  },
+  {
+    "id": "008",
+    "name": "Vintage long coat",
+    "category": "Coat",
+    "size": "M",
+    "condition": "Good",
+    "price": "€00",
+    "image": "../assets/images/coat-2/See you Saturday with a lot of new vintage pieces!.jpg",
+    "alt": "Vintage long coat shown on a model",
+    "sold": false
+  }
+]

@@ -1,0 +1,90 @@
+{
+  "nav": {
+    "home": "ReClaim Vintage Shop home",
+    "brandAlt": "ReClaim Vintage Shop",
+    "menu": "Menu",
+    "close": "Close",
+    "arrivals": "New arrivals",
+    "collection": "The collection",
+    "visit": "Visit",
+    "instagram": "Instagram",
+    "tiktok": "TikTok",
+    "mainLabel": "Main navigation",
+    "language": "Current language: English",
+    "code": "EN"
+  },
+  "hero": {
+    "galleryLabel": "Images of the ReClaim vintage shop",
+    "previousImage": "Previous image",
+    "nextImage": "Next image",
+    "selectImage": "Select hero image {{number}}",
+    "images": {
+      "main": "The ReClaim vintage shop interior with clothing racks and its grand opening poster",
+      "detail": "A ceramic horse ornament and vintage seating inside the shop",
+      "opening": "The shop interior with clothing rails and hand-drawn window graphics"
+    },
+    "eyebrow": "Vintage shop · Budapest",
+    "title": "Good things, found again.",
+    "description": "A little something with a past, waiting for its next chapter.",
+    "action": "Meet the edit"
+  },
+  "arrivals": {
+    "eyebrow": "Fresh from the rails",
+    "title": "Just dropped.",
+    "swipeHint": "Swipe to browse",
+    "listLabel": "New vintage pieces",
+    "browseAll": "Browse all pieces",
+    "askAbout": "Ask about this piece: {{name}}",
+    "size": "Size {{size}}",
+    "inStock": "In stock",
+    "sold": "Sold"
+  },
+  "visit": {
+    "eyebrow": "A note from the shop",
+    "title": "Come find your next favourite.",
+    "description": "A considered mix of vintage, archive and workwear. Come browse, take your time, and see what finds you.",
+    "address": "Address",
+    "hours": "Opening hours",
+    "todo": "[TODO]"
+  },
+  "hours": {
+    "statusLabel": "Current shop status",
+    "openNow": "Open now",
+    "closedNow": "Closed",
+    "closedDay": "Closed",
+    "days": {
+      "monday": "Monday",
+      "tuesday": "Tuesday",
+      "wednesday": "Wednesday",
+      "thursday": "Thursday",
+      "friday": "Friday",
+      "saturday": "Saturday",
+      "sunday": "Sunday"
+    }
+  },
+  "map": {
+    "label": "Map showing the shop location",
+    "coordinatesTodo": "[TODO: verify coordinates]",
+    "loading": "Loading map",
+    "openGoogleMaps": "Open in Google Maps",
+    "attribution": "© OpenStreetMap contributors"
+  },
+  "rating": {
+    "title": "Shop rating",
+    "score": "{{score}} on Google Maps",
+    "reviewCount": "{{count}} reviews",
+    "readReviews": "Read reviews"
+  },
+  "footer": {
+    "note": "Good finds, good stories.",
+    "brand": "ReClaim Vintage Shop",
+    "copyright": "ReClaim Vintage Budapest",
+    "instagram": "Instagram",
+    "tiktok": "TikTok"
+  },
+  "notFound": {
+    "brand": "ReClaim Vintage Shop",
+    "title": "This page is missing.",
+    "home": "Back to home"
+  }
+}

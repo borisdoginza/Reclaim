@@ -1,0 +1,9 @@
+[
+  { "day": "monday", "opening": "11:00", "closing": "20:00", "closed": false },
+  { "day": "tuesday", "opening": "11:00", "closing": "20:00", "closed": false },
+  { "day": "wednesday", "opening": "11:00", "closing": "20:00", "closed": false },
+  { "day": "thursday", "opening": "11:00", "closing": "20:00", "closed": false },
+  { "day": "friday", "opening": "11:00", "closing": "20:00", "closed": false },
+  { "day": "saturday", "opening": "11:00", "closing": "20:00", "closed": false },
+  { "day": "sunday", "opening": "11:00", "closing": "20:00", "closed": false }
+]

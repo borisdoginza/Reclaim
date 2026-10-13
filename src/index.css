@@ -1,7 +1,33 @@
 @import "tailwindcss";
 
+.arrivals-slider .swiper-wrapper {
+  @apply ease-linear;
+}
+
+.leaflet-tile-pane {
+  filter: grayscale(1) contrast(1.1);
+}
+
+.hero-mobile-pagination .swiper-pagination-bullet {
+  @apply size-2 rounded-none bg-secondary opacity-40;
+}
+
+.hero-mobile-pagination .swiper-pagination-bullet-active {
+  @apply bg-ink opacity-100;
+}
+
+.reclaim-map-marker {
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--color-ink);
+  background: var(--color-paper);
+}
+
 @theme {
-  --breakpoint-md: 760px;
+  --breakpoint-md: 768px;
+
+  --aspect-hero-image: 4 / 5;
+  --aspect-hero-collage: 9 / 10;
 
   --color-ink: #000000;
   --color-paper: #ffffff;
@@ -16,6 +42,8 @@
   --spacing-header: 72px;
   --spacing-header-wide: 88px;
   --spacing-content-max: 1280px;
+  --spacing-divider-width: 1280px;
+  --spacing-divider-thickness: 1px;
   --spacing-brand-width: 112px;
   --spacing-brand-height: 42px;
   --spacing-menu-width: 20px;
