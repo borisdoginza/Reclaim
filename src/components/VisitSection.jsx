@@ -1,8 +1,9 @@
 import FlowerMark from './FlowerMark'
 import { useTranslation } from 'react-i18next'
 import HoursWidget from './HoursWidget'
-import StoreMap from './StoreMap'
+import StoreMap, { StoreMapDetails } from './StoreMap'
 import location from '../data/location.json'
+import GoogleRating from './GoogleRating'
 import Divider from './Divider'
 import Reveal from './Reveal'
 
@@ -21,7 +22,7 @@ export default function VisitSection() {
         aria-labelledby="visit-title"
       >
         <div>
-          <p className="mb-[14px] flex items-center gap-[9px] text-[12px] leading-[1.4] font-medium tracking-[0.12em] text-secondary uppercase">
+          <p className="mb-[14px] flex items-center gap-[9px] text-[14px] leading-[1.4] font-medium tracking-[0.1em] text-secondary uppercase">
             <FlowerMark className="h-5 w-5 shrink-0 fill-current" />
             {t('visit.eyebrow')}
           </p>
@@ -35,16 +36,20 @@ export default function VisitSection() {
             {t('visit.description')}
           </p>
         </div>
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 xl:gap-8" id="visit">
-          <Divider className="col-span-full mb-5" />
-          <div>
-            <h3 className="mb-2 text-[11px] font-medium tracking-[0.1em] text-secondary uppercase">{t('visit.address')}</h3>
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 lg:gap-x-6 lg:gap-y-0 xl:gap-x-8" id="visit">
+          <div className="lg:col-start-1 lg:row-start-1">
+            <h3 className="mb-2 text-[14px] font-medium tracking-[0.1em] text-secondary uppercase">{t('visit.address')}</h3>
             <p className="m-0 text-[14px]">{location.address}</p>
-            <StoreMap />
           </div>
-          <div>
-            <h3 className="mb-2 text-[11px] font-medium tracking-[0.1em] text-secondary uppercase">{t('visit.hours')}</h3>
-            <HoursWidget />
+          <StoreMap />
+          <StoreMapDetails />
+          <div className="flex flex-col justify-between lg:col-start-2 lg:row-start-1 lg:row-span-2">
+            <div>
+              <h3 className="mb-2 text-[14px] font-medium tracking-[0.1em] text-secondary uppercase">{t('visit.hours')}</h3>
+              <HoursWidget />
+            </div>
+            <Divider className="my-6" />
+            <GoogleRating />
           </div>
         </div>
       </Reveal>

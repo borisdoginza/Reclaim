@@ -48,7 +48,7 @@ export default function Nav() {
         </span>
       </button>
       <nav
-        className={`absolute top-[calc(100%+1px)] right-0 left-0 overflow-hidden bg-ink text-paper transition-[max-height,opacity,visibility] duration-300 ease-in-out md:visible md:static md:max-h-none md:overflow-visible md:bg-transparent md:opacity-100 ${menuOpen ? 'visible max-h-[400px] opacity-100' : 'invisible pointer-events-none max-h-0 opacity-0'} md:pointer-events-auto`}
+        className={`absolute top-[calc(100%+1px)] right-0 left-0 origin-top overflow-hidden bg-ink text-paper transition-[opacity,transform] duration-300 ease-in-out md:visible md:static md:max-h-none md:overflow-visible md:bg-transparent md:scale-y-100 md:opacity-100 ${menuOpen ? 'visible max-h-[400px] scale-y-100 opacity-100' : 'invisible pointer-events-none max-h-0 scale-y-95 opacity-0'} md:pointer-events-auto`}
         id="site-navigation"
         aria-label={t('nav.mainLabel')}
       >
@@ -56,7 +56,7 @@ export default function Nav() {
           {navigationItems.map(({ href, label }) => (
             <Fragment key={href}>
               <a
-                className="flex min-h-11 items-center text-[16px] text-accent transition-colors duration-150 hover:text-paper md:min-h-10 md:text-[14px]"
+                className="flex min-h-11 items-center text-[16px] text-accent transition-opacity duration-150 hover:opacity-70 md:min-h-10 md:text-[14px]"
                 href={href}
                 onClick={closeMenu}
               >
@@ -66,7 +66,7 @@ export default function Nav() {
             </Fragment>
           ))}
           <a
-            className="flex min-h-11 items-center text-[16px] text-accent transition-colors duration-150 hover:text-paper md:min-h-10 md:text-[14px]"
+            className="flex min-h-11 items-center text-[16px] text-accent transition-opacity duration-150 hover:opacity-70 md:min-h-10 md:text-[14px]"
             href="https://www.instagram.com/reclaimvintage.bp/"
             target="_blank"
             rel="noreferrer"
@@ -76,7 +76,7 @@ export default function Nav() {
           </a>
           <Divider className="md:hidden" />
           <a
-            className="flex min-h-11 items-center text-[16px] text-accent transition-colors duration-150 hover:text-paper md:min-h-10 md:text-[14px]"
+            className="flex min-h-11 items-center text-[16px] text-accent transition-opacity duration-150 hover:opacity-70 md:min-h-10 md:text-[14px]"
             href="https://www.tiktok.com/@reclaimvintage.bp"
             target="_blank"
             rel="noreferrer"

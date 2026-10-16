@@ -1,22 +1,38 @@
 import productRecords from './products.json'
-import leatherJacketImage from '../assets/images/Leater jacket/It’s leather season again 🤎.jpg'
-import velvetBlazerImage from '../assets/images/Velvet blazer/some of our new vintage velvet blazers.jpg'
-import missoniKnitImage from '../assets/images/Vintage Missoni top/missoni_top_1.png'
-import utilityVestImage from '../assets/images/vest-3/New vintage vests in the store 🎣.jpg'
-import sportJacketImage from '../assets/images/zip-1/We are fully prepared for the new season 🍂☁️(1).jpg'
-import embroideredVestImage from '../assets/images/shirt-2/Some new pieces & details 🔎(3).jpg'
-import denimJacketImage from '../assets/images/jacket-4/Some of our new vintage pieces for autumn ☁️.jpg'
-import longCoatImage from '../assets/images/coat-2/See you Saturday with a lot of new vintage pieces!.jpg'
+import coatImage from '../assets/images/coat-1/Some of our new vintage pieces for autumn ☁️(2).jpg'
+import halfZipOneImage from '../assets/images/half-zip-1/We are fully prepared for the new season 🍂☁️(3).jpg'
+import halfZipTwoImage from '../assets/images/half-zip-2/We are fully prepared for the new season 🍂☁️(2).jpg'
+import jacketOneImage from '../assets/images/jacket-1/New vintage jackets & coats are now available in the store 🧥(4).jpg'
+import jacketTwoImage from '../assets/images/jacket-2/New vintage jackets & coats are now available in the store 🧥(2).jpg'
+import jacketThreeImage from '../assets/images/jacket-3/New vintage jackets & coats are now available in the store 🧥.jpg'
+import jacketFourImage from '../assets/images/jacket-4/Some of our new vintage pieces for autumn ☁️.jpg'
+import jacketFiveImage from '../assets/images/jacket-5/Some of our new vintage pieces for autumn ☁️(4).jpg'
+import shirtOneImage from '../assets/images/shirt-1/Some new pieces & details 🔎(4).jpg'
+import shirtTwoImage from '../assets/images/shirt-2/Some new pieces & details 🔎(2).jpg'
+import shirtThreeImage from '../assets/images/shirt-3/Some new pieces & details 🔎.jpg'
+import vestOneImage from '../assets/images/vest-1/New vintage vests in the store 🎣(4).jpg'
+import vestTwoImage from '../assets/images/vest-2/New vintage vests in the store 🎣(2).jpg'
+import vestThreeImage from '../assets/images/vest-3/New vintage vests in the store 🎣.jpg'
+import zipOneImage from '../assets/images/zip-1/We are fully prepared for the new season 🍂☁️(1).jpg'
+import zipTwoImage from '../assets/images/zip-2/We are fully prepared for the new season 🍂☁️.jpg'
 
 const imageUrls = {
-  '../assets/images/Leater jacket/It’s leather season again 🤎.jpg': leatherJacketImage,
-  '../assets/images/Velvet blazer/some of our new vintage velvet blazers.jpg': velvetBlazerImage,
-  '../assets/images/Vintage Missoni top/missoni_top_1.png': missoniKnitImage,
-  '../assets/images/vest-3/New vintage vests in the store 🎣.jpg': utilityVestImage,
-  '../assets/images/zip-1/We are fully prepared for the new season 🍂☁️(1).jpg': sportJacketImage,
-  '../assets/images/shirt-2/Some new pieces & details 🔎(3).jpg': embroideredVestImage,
-  '../assets/images/jacket-4/Some of our new vintage pieces for autumn ☁️.jpg': denimJacketImage,
-  '../assets/images/coat-2/See you Saturday with a lot of new vintage pieces!.jpg': longCoatImage,
+  '../assets/images/coat-1/Some of our new vintage pieces for autumn ☁️(2).jpg': coatImage,
+  '../assets/images/half-zip-1/We are fully prepared for the new season 🍂☁️(3).jpg': halfZipOneImage,
+  '../assets/images/half-zip-2/We are fully prepared for the new season 🍂☁️(2).jpg': halfZipTwoImage,
+  '../assets/images/jacket-1/New vintage jackets & coats are now available in the store 🧥(4).jpg': jacketOneImage,
+  '../assets/images/jacket-2/New vintage jackets & coats are now available in the store 🧥(2).jpg': jacketTwoImage,
+  '../assets/images/jacket-3/New vintage jackets & coats are now available in the store 🧥.jpg': jacketThreeImage,
+  '../assets/images/jacket-4/Some of our new vintage pieces for autumn ☁️.jpg': jacketFourImage,
+  '../assets/images/jacket-5/Some of our new vintage pieces for autumn ☁️(4).jpg': jacketFiveImage,
+  '../assets/images/shirt-1/Some new pieces & details 🔎(4).jpg': shirtOneImage,
+  '../assets/images/shirt-2/Some new pieces & details 🔎(2).jpg': shirtTwoImage,
+  '../assets/images/shirt-3/Some new pieces & details 🔎.jpg': shirtThreeImage,
+  '../assets/images/vest-1/New vintage vests in the store 🎣(4).jpg': vestOneImage,
+  '../assets/images/vest-2/New vintage vests in the store 🎣(2).jpg': vestTwoImage,
+  '../assets/images/vest-3/New vintage vests in the store 🎣.jpg': vestThreeImage,
+  '../assets/images/zip-1/We are fully prepared for the new season 🍂☁️(1).jpg': zipOneImage,
+  '../assets/images/zip-2/We are fully prepared for the new season 🍂☁️.jpg': zipTwoImage,
 }
 
 const products = productRecords.map((product) => {

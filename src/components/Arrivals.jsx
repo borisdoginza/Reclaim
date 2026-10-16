@@ -124,7 +124,7 @@ export default function Arrivals() {
         <p className="mb-3 text-[12px] font-medium tracking-[0.12em] text-secondary uppercase">
           {t('arrivals.eyebrow')}
         </p>
-        <div className="flex items-end justify-between gap-3">
+        <div className="flex items-center justify-between gap-3">
           <h2
             className="m-0 max-w-[720px] font-display text-[clamp(40px,12vw,56px)] leading-[0.92] font-normal tracking-[-0.055em] uppercase md:text-[64px]"
             id="arrivals-title"
@@ -133,9 +133,9 @@ export default function Arrivals() {
           </h2>
           <FlowerMark className="mb-[3px] h-[30px] w-[30px] shrink-0 fill-current" />
         </div>
-        <p className="mt-[18px] mb-0 text-[13px] text-secondary">
+        {/* <p className="mt-[18px] mb-0 text-[13px] text-secondary">
           {t('arrivals.swipeHint')}
-        </p>
+        </p> */}
       </div>
       <div
         className="px-gutter md:px-[max(32px,calc((100vw-1280px)/2))]"

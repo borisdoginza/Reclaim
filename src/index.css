@@ -37,6 +37,21 @@
   --font-display: "Dela Gothic One", "Arial Black", sans-serif;
   --font-body: "Instrument Sans", sans-serif;
 
+  --animate-flower-spin: flower-spin 20s linear infinite;
+  --animate-stamp-spin: stamp-spin 30s linear infinite;
+
+  @keyframes flower-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes stamp-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
   --spacing-gutter: 20px;
   --spacing-gutter-wide: 32px;
   --spacing-header: 72px;
@@ -93,7 +108,7 @@
     *,
     *::before,
     *::after {
-      @apply !scroll-auto !transition-none;
+      @apply !scroll-auto !transition-none !animate-none;
     }
   }
 }

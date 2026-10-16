@@ -44,14 +44,16 @@
     "title": "Come find your next favourite.",
     "description": "A considered mix of vintage, archive and workwear. Come browse, take your time, and see what finds you.",
     "address": "Address",
-    "hours": "Opening hours",
-    "todo": "[TODO]"
+    "hours": "Opening hours"
   },
   "hours": {
     "statusLabel": "Current shop status",
     "openNow": "Open now",
     "closedNow": "Closed",
     "closedDay": "Closed",
+    "weekLabel": "Opening status for each day of the week",
+    "today": "Today",
+    "dayStatus": "{{day}} {{status}}",
     "days": {
       "monday": "Monday",
       "tuesday": "Tuesday",
@@ -60,6 +62,15 @@
       "friday": "Friday",
       "saturday": "Saturday",
       "sunday": "Sunday"
+    },
+    "shortDays": {
+      "monday": "Mon",
+      "tuesday": "Tue",
+      "wednesday": "Wed",
+      "thursday": "Thu",
+      "friday": "Fri",
+      "saturday": "Sat",
+      "sunday": "Sun"
     }
   },
   "map": {
@@ -77,6 +88,7 @@
   },
   "footer": {
     "note": "Good finds, good stories.",
+    "social": "Follow us",
     "brand": "ReClaim Vintage Shop",
     "copyright": "ReClaim Vintage Budapest",
     "instagram": "Instagram",

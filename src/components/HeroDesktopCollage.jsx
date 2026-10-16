@@ -52,7 +52,7 @@ export default function HeroDesktopCollage() {
   return (
     <div className="hero-desktop-collage relative aspect-hero-collage w-full" aria-label={t('hero.galleryLabel')}>
       <img
-        className="pointer-events-none absolute top-[8%] left-[6%] h-[84%] w-[88%] object-contain"
+        className="pointer-events-none absolute top-[8%] left-[10%] h-[80%] w-[82%] scale-[1.15] -rotate-[3deg] object-contain"
         src={fabricImage}
         alt=""
         aria-hidden="true"
@@ -63,10 +63,11 @@ export default function HeroDesktopCollage() {
         const position = isActive
           ? 'top-[14%] left-[20%] z-30 w-[60%]'
           : `${smallImagePositions[positionIndex]} z-20 w-[28%]`
+        const rotation = isActive ? '' : positionIndex === 0 ? '-rotate-[3deg]' : 'rotate-[2deg]'
 
         return (
           <button
-            className={`absolute aspect-hero-image overflow-hidden border-2 border-paper bg-paper p-0 transition-[top,left,width] duration-[650ms] ease-in-out ${position}`}
+            className={`absolute aspect-hero-image overflow-hidden border-2 border-paper bg-paper p-0 transition-[top,left,width,rotate] duration-[600ms] ease-in-out ${rotation} ${position}`}
             key={image.id}
             type="button"
             aria-label={t('hero.selectImage', { number: index + 1 })}
@@ -74,7 +75,7 @@ export default function HeroDesktopCollage() {
             onClick={() => selectImage(index)}
           >
             <img
-              className="block h-full w-full object-cover"
+              className={`block h-full w-full object-cover transition-[filter] duration-[600ms] ease-in-out ${isActive ? '' : 'grayscale-[70%] contrast-[1.2]'}`}
               src={image.src}
               alt={t(image.altKey)}
               width="1170"
