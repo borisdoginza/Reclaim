@@ -116,7 +116,7 @@ export default function Arrivals() {
   }
 
   return (
-    <Reveal as="section" className="py-10 pb-mobile-section md:py-20 md:pb-24" id="new-arrivals" aria-labelledby="arrivals-title">
+    <Reveal as="section" className="py-10 pb-8 md:py-20 md:pb-24" id="new-arrivals" aria-labelledby="arrivals-title">
       <div className="mx-auto w-[min(calc(100%-40px),1280px)]">
         <Divider className="mb-10 md:mb-20" />
       </div>

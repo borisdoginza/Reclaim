@@ -4,6 +4,7 @@ import hours from '../data/hours.json'
 import { groupConsecutiveHours } from '../data/hours'
 import location from '../data/location.json'
 import Divider from './Divider'
+import Label from './Label'
 
 export default function Footer() {
   const { t } = useTranslation()
@@ -14,26 +15,50 @@ export default function Footer() {
       <div
         className="pointer-events-none absolute inset-0 z-0 opacity-[0.08]"
         aria-hidden="true"
-        style={{
-          backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=%270 0 180 180%27 xmlns=%27http://www.w3.org/2000/svg%27%3E%3Cfilter id=%27n%27%3E%3CfeTurbulence type=%27fractalNoise%27 baseFrequency=%27.8%27 numOctaves=%273%27 stitchTiles=%27stitch%27/%3E%3C/filter%3E%3Crect width=%27100%25%27 height=%27100%25%27 filter=%27url(%23n)%27 opacity=%27.9%27/%3E%3C/svg%3E")',
-        }}
+        // style={{
+        //   backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=%270 0 180 180%27 xmlns=%27http://www.w3.org/2000/svg%27%3E%3Cfilter id=%27n%27%3E%3CfeTurbulence type=%27fractalNoise%27 baseFrequency=%27.8%27 numOctaves=%273%27 stitchTiles=%27stitch%27/%3E%3C/filter%3E%3Crect width=%27100%25%27 height=%27100%25%27 filter=%27url(%23n)%27 opacity=%27.9%27/%3E%3C/svg%3E")',
+        // }}
       />
-      <div className="relative z-10 mx-auto grid w-[min(calc(100%-40px),1280px)] gap-8 py-8 md:grid-cols-3 md:gap-10 md:py-10">
-        <div className="flex items-start gap-4">
+      <div className="relative z-10 mx-auto grid w-[min(calc(100%-40px),1280px)] grid-cols-1 gap-8 py-8 md:grid-cols-3 md:gap-10 md:py-10">
+        <div className="flex items-center justify-between md:hidden">
           <img
-            className="h-brand-width w-brand-width shrink-0 animate-stamp-spin motion-reduce:animate-none"
+            className="h-brand-width w-brand-width shrink-0 animate-stamp-spin [animation-direction:reverse] motion-reduce:animate-none"
             src={footerLogo}
             alt={t('footer.brand')}
             width="112"
             height="112"
           />
-          <div>
-            <h2 className="mb-2 text-[14px] font-medium tracking-[0.1em] uppercase">{t('visit.address')}</h2>
-            <p className="m-0 max-w-48 text-[14px] leading-[1.5]">{location.address}</p>
-          </div>
+          <p className="m-0 text-[16px] leading-[1.5]">{t('footer.note')}</p>
         </div>
-        <div>
-          <h2 className="mb-2 text-[14px] font-medium tracking-[0.1em] uppercase">{t('visit.hours')}</h2>
+        <section className="flex flex-col gap-8">
+          <div className="hidden items-center gap-4 md:flex">
+            <img
+              className="h-brand-width w-brand-width shrink-0 animate-stamp-spin [animation-direction:reverse] motion-reduce:animate-none"
+              src={footerLogo}
+              alt={t('footer.brand')}
+              width="112"
+              height="112"
+            />
+            <p className="m-0 text-[16px] leading-[1.5]">{t('footer.note')}</p>
+          </div>
+          <div className="flex flex-col gap-2">
+            <Label as="h2" tone="dark">
+              {t('visit.address')}
+            </Label>
+            <a
+              className="relative inline-flex text-[16px] leading-[1.5] transition-opacity duration-150 after:absolute after:inset-x-0 after:-inset-y-2.5 after:content-[''] hover:opacity-70"
+              href={location.googleMapsUrl}
+              target="_blank"
+              rel="noreferrer"
+            >
+              {location.address}
+            </a>
+          </div>
+        </section>
+        <section className="flex flex-col gap-2">
+          <Label as="h2" tone="dark">
+            {t('visit.hours')}
+          </Label>
           <div className="grid gap-2">
             {groupedHours.map(({ entries }) => {
               const firstDay = entries[0]
@@ -46,25 +71,36 @@ export default function Footer() {
                 : `${firstDay.opening}-${firstDay.closing}`
 
               return (
-                <p className="m-0 text-[14px] leading-[1.5]" key={firstDay.day}>
+                <p className="m-0 text-[16px] leading-[1.5]" key={firstDay.day}>
                   {dayRange} {times}
                 </p>
               )
             })}
           </div>
-        </div>
-        <div>
-          <h2 className="mb-2 text-[14px] font-medium tracking-[0.1em] uppercase">{t('footer.social')}</h2>
-          <p className="mt-0 mb-3 text-[14px] leading-[1.5] text-accent">{t('footer.note')}</p>
-          <div className="flex flex-wrap gap-x-5 gap-y-2 text-[14px]">
-            <a className="inline-flex min-h-11 items-center underline underline-offset-4 transition-opacity duration-150 hover:opacity-70" href={location.instagramUrl} target="_blank" rel="noreferrer">
+        </section>
+        <section className="flex flex-col gap-2">
+          <Label as="h2" tone="dark">
+            {t('footer.social')}
+          </Label>
+          <div className="flex gap-5">
+            <a
+              className="relative inline-flex text-[16px] underline underline-offset-4 transition-opacity duration-150 after:absolute after:inset-x-0 after:-inset-y-2.5 after:content-[''] hover:opacity-70"
+              href={location.instagramUrl}
+              target="_blank"
+              rel="noreferrer"
+            >
               {t('footer.instagram')} ↗
             </a>
-            <a className="inline-flex min-h-11 items-center underline underline-offset-4 transition-opacity duration-150 hover:opacity-70" href={location.tiktokUrl} target="_blank" rel="noreferrer">
+            <a
+              className="relative inline-flex text-[16px] underline underline-offset-4 transition-opacity duration-150 after:absolute after:inset-x-0 after:-inset-y-2.5 after:content-[''] hover:opacity-70"
+              href={location.tiktokUrl}
+              target="_blank"
+              rel="noreferrer"
+            >
               {t('footer.tiktok')} ↗
             </a>
           </div>
-        </div>
+        </section>
       </div>
       <div className="relative z-10 mx-auto w-[min(calc(100%-40px),1280px)]">
         <Divider />

@@ -67,7 +67,7 @@ export default function HeroDesktopCollage() {
 
         return (
           <button
-            className={`absolute aspect-hero-image overflow-hidden border-2 border-paper bg-paper p-0 transition-[top,left,width,rotate] duration-[600ms] ease-in-out ${rotation} ${position}`}
+            className={`absolute aspect-hero-image overflow-hidden border-2 border-none bg-paper p-0 transition-[top,left,width,rotate] duration-[600ms] ease-in-out ${rotation} ${position}`}
             key={image.id}
             type="button"
             aria-label={t('hero.selectImage', { number: index + 1 })}

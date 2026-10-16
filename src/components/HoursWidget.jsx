@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import hours from '../data/hours.json'
 import { groupConsecutiveHours } from '../data/hours'
+import Label from './Label'
 
 function getBudapestTime() {
   const parts = new Intl.DateTimeFormat('en-GB', {
@@ -40,47 +41,54 @@ export default function HoursWidget() {
   const groups = groupConsecutiveHours(hours)
 
   return (
-    <div aria-label={t('hours.statusLabel')}>
-      <p className="mb-3 text-[14px] font-medium tracking-[0.1em] uppercase" aria-live="polite">
-        {isOpen ? t('hours.openNow') : t('hours.closedNow')}
-      </p>
-      <div className="mb-4 flex gap-2" role="group" aria-label={t('hours.weekLabel')}>
-        {hours.map((entry) => {
-          const isToday = entry.day === currentTime.day
-
-          return (
-            <span
-              className={`size-4 border border-ink ${isToday ? 'bg-ink' : 'bg-transparent'}`}
-              key={entry.day}
-              role="img"
-              aria-label={t('hours.dayStatus', {
-                day: t(`hours.days.${entry.day}`),
-                status: isToday ? t('hours.today') : '',
-              })}
-              aria-current={isToday ? 'date' : undefined}
-            />
-          )
-        })}
+    <div className="flex flex-col gap-4" aria-label={t('hours.statusLabel')}>
+      <div className="flex items-baseline justify-between gap-4">
+        <Label as="h3">{t('visit.hours')}</Label>
+        <p className="m-0 text-[16px]" aria-live="polite">
+          {isOpen ? t('hours.openNow') : t('hours.closedNow')}
+        </p>
       </div>
-      <dl className="m-0">
-        {groups.map(({ entries }) => {
-          const firstDay = entries[0]
-          const lastDay = entries[entries.length - 1]
-          const dayLabel = entries.length === 1
-            ? t(`hours.days.${firstDay.day}`)
-            : `${t(`hours.shortDays.${firstDay.day}`)}-${t(`hours.shortDays.${lastDay.day}`)}`
-          const timeLabel = firstDay.closed
-            ? t('hours.closedDay')
-            : `${firstDay.opening}-${firstDay.closing}`
+      <div className="flex flex-col gap-4">
+        <div className="flex gap-2" role="group" aria-label={t('hours.weekLabel')}>
+          {hours.map((entry) => {
+            const isToday = entry.day === currentTime.day
 
-          return (
-            <div className="grid grid-cols-[1fr_auto] gap-x-3 py-2 text-[14px] tracking-[0.1em] uppercase" key={firstDay.day}>
-              <dt>{dayLabel}</dt>
-              <dd className="m-0 text-right">{timeLabel}</dd>
-            </div>
-          )
-        })}
-      </dl>
+            return (
+              <span
+                className={`grid size-6 place-items-center border border-ink text-[12px] leading-none ${isToday ? 'bg-ink text-paper' : 'bg-transparent text-ink'}`}
+                key={entry.day}
+                role="img"
+                aria-label={t('hours.dayStatus', {
+                  day: t(`hours.days.${entry.day}`),
+                  status: isToday ? t('hours.today') : '',
+                })}
+                aria-current={isToday ? 'date' : undefined}
+              >
+                {entry.day[0].toUpperCase()}
+              </span>
+            )
+          })}
+        </div>
+        <dl className="m-0">
+          {groups.map(({ entries }) => {
+            const firstDay = entries[0]
+            const lastDay = entries[entries.length - 1]
+            const dayLabel = entries.length === 1
+              ? t(`hours.days.${firstDay.day}`)
+              : `${t(`hours.shortDays.${firstDay.day}`)}-${t(`hours.shortDays.${lastDay.day}`)}`
+            const timeLabel = firstDay.closed
+              ? t('hours.closedDay')
+              : `${firstDay.opening}-${firstDay.closing}`
+
+            return (
+              <div className="grid grid-cols-[1fr_auto] gap-x-3 text-[16px] leading-[1.5]" key={firstDay.day}>
+                <dt>{dayLabel}</dt>
+                <dd className="m-0 text-right">{timeLabel}</dd>
+              </div>
+            )
+          })}
+        </dl>
+      </div>
     </div>
   )
 }

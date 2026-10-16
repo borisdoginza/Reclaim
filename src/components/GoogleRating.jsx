@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import rating from '../data/rating.json'
+import Label from './Label'
 
 export default function GoogleRating() {
   const { t } = useTranslation()
@@ -7,12 +8,12 @@ export default function GoogleRating() {
   if (rating.rating === null || rating.review_count === null) return null
 
   return (
-    <div className="flex flex-col items-start gap-3" aria-labelledby="rating-title">
-      <div>
-        <h3 id="rating-title" className="m-0 text-[14px] font-medium tracking-[0.1em] uppercase">
+    <div className="flex flex-col items-start gap-4" aria-labelledby="rating-title">
+      <div className="flex flex-col gap-2">
+        <Label as="h3" id="rating-title">
           {t('rating.title')}
-        </h3>
-        <p className="mt-2 mb-0 text-[14px]">
+        </Label>
+        <p className="m-0 text-[16px]">
           {t('rating.score', { score: rating.rating })}
           <span className="ml-3">
             {t('rating.reviewCount', { count: rating.review_count })}
