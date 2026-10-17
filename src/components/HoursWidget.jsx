@@ -43,7 +43,7 @@ export default function HoursWidget() {
   return (
     <div className="flex flex-col gap-4" aria-label={t('hours.statusLabel')}>
       <div className="flex items-baseline justify-between gap-4">
-        <Label as="h3" className="md:leading-4 lg:leading-[1.4]">{t('visit.hours')}</Label>
+        <Label as="h3" className="md:leading-4 lg:leading-4">{t('visit.hours')}</Label>
         <p className="m-0 text-[16px]" aria-live="polite">
           {isOpen ? t('hours.openNow') : t('hours.closedNow')}
         </p>

@@ -39,7 +39,7 @@ export default function LeafletMap() {
 
   return (
     <MapContainer
-      className="aspect-[4/3] w-full border border-accent md:aspect-[16/7] md:min-h-[280px] lg:aspect-[4/3] lg:min-h-0"
+      className="aspect-[4/3] w-full border border-accent md:aspect-[16/7] md:min-h-[280px] lg:absolute lg:inset-0 lg:h-full lg:aspect-auto lg:min-h-0"
       center={[location.latitude, location.longitude]}
       zoom={16}
       scrollWheelZoom={false}

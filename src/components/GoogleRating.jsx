@@ -10,7 +10,7 @@ export default function GoogleRating() {
   return (
     <div className="flex flex-col items-start gap-4" aria-labelledby="rating-title">
       <div className="flex flex-col gap-2">
-        <Label as="h3" id="rating-title">
+        <Label as="h3" className="lg:leading-4" id="rating-title">
           {t('rating.title')}
         </Label>
         <p className="m-0 flex flex-wrap gap-x-3 text-[16px]">
