@@ -2,7 +2,7 @@ import FlowerMark from './FlowerMark'
 import { useTranslation } from 'react-i18next'
 import HoursWidget from './HoursWidget'
 import StoreMap, { StoreMapDetails } from './StoreMap'
-import location from '../data/location.json'
+// import location from '../data/location.json'
 import GoogleRating from './GoogleRating'
 import Divider from './Divider'
 import Reveal from './Reveal'
@@ -17,13 +17,13 @@ export default function VisitSection() {
         <Divider />
         <Reveal
           as="section"
-          className="grid grid-cols-1 gap-8 md:grid-cols-[0.85fr_1.15fr] md:items-start md:gap-12 md:py-24 lg:gap-16"
+          className="grid grid-cols-1 gap-8 md:grid-cols-5 md:items-start md:gap-x-8 md:gap-y-12 md:py-24 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16"
           id="collection"
           aria-labelledby="visit-title"
         >
-          <div className="flex flex-col gap-4">
-            <Label className="flex items-center gap-[9px]">
-              <FlowerMark className="h-5 w-5 shrink-0 fill-current" />
+          <div className="flex flex-col gap-4 md:col-span-5 md:row-start-1 lg:col-span-1 lg:col-start-1">
+            <Label className="flex items-center gap-[9px] md:leading-4 lg:leading-[1.4]">
+              <FlowerMark className="h-5 w-5 shrink-0 fill-current md:h-4 md:w-4 lg:h-5 lg:w-5" />
               {t('visit.eyebrow')}
             </Label>
             <h2
@@ -36,21 +36,19 @@ export default function VisitSection() {
               {t('visit.description')}
             </p>
           </div>
-          <div className="flex flex-col gap-8 md:grid md:grid-cols-2 md:gap-x-6 md:gap-y-8 lg:gap-x-8" id="visit">
-            <section className="flex flex-col gap-4 md:col-start-1 md:row-start-1">
-              <div className="flex flex-col gap-2">
-                <Label as="h3">{t('visit.address')}</Label>
+          <div className="flex flex-col gap-8 md:contents lg:grid lg:grid-cols-2 lg:gap-x-6 lg:gap-y-0 xl:gap-x-8" id="visit">
+            <section className="flex flex-col gap-4 md:contents">
+              {/* <div className="flex flex-col gap-2 md:col-span-3 md:col-start-6 md:row-start-1 lg:col-span-1 lg:col-start-1">
+                <Label as="h3" className="md:leading-4 lg:leading-[1.4]">{t('visit.address')}</Label>
                 <p className="m-0 text-[16px] leading-[1.5]">{location.address}</p>
-              </div>
+              </div> */}
               <StoreMap />
               <StoreMapDetails />
             </section>
-            <Divider className="md:hidden" />
-            <section className="md:col-start-2 md:row-start-1">
+            <Divider className="my-2 md:hidden" />
+            <section className="flex flex-col gap-8 md:col-span-4 md:col-start-9 md:row-start-1 lg:col-span-1 lg:col-start-2 lg:row-span-2 lg:justify-between lg:gap-0">
               <HoursWidget />
-            </section>
-            <Divider className="md:col-start-2 md:row-start-2" />
-            <section className="md:col-start-2 md:row-start-3">
+              <Divider className="my-8 md:my-0 lg:my-6" />
               <GoogleRating />
             </section>
           </div>

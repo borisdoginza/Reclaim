@@ -13,9 +13,9 @@ export default function GoogleRating() {
         <Label as="h3" id="rating-title">
           {t('rating.title')}
         </Label>
-        <p className="m-0 text-[16px]">
-          {t('rating.score', { score: rating.rating })}
-          <span className="ml-3">
+        <p className="m-0 flex flex-wrap gap-x-3 text-[16px]">
+          <span className="whitespace-nowrap">{t('rating.score', { score: rating.rating })}</span>
+          <span className="whitespace-nowrap">
             {t('rating.reviewCount', { count: rating.review_count })}
           </span>
         </p>
