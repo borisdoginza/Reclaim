@@ -15,7 +15,7 @@ import useMediaQuery from '../hooks/useMediaQuery'
 
 function VisitIntro({ t }) {
   return (
-    <div className="flex flex-col gap-4 md:col-span-5 md:row-start-1 lg:col-span-1 lg:col-start-1 lg:row-start-1 lg:row-span-2">
+    <div className="flex flex-col gap-4 md:col-span-7 md:row-start-1 lg:col-span-1 lg:col-start-1 lg:row-start-1 lg:row-span-2">
       <Label className="flex items-center gap-[9px] md:leading-4 lg:leading-4">
         <FlowerMark className="h-5 w-5 shrink-0 fill-current md:h-4 md:w-4 lg:h-5 lg:w-5" />
         {t('visit.eyebrow')}
@@ -43,7 +43,7 @@ function MobileTabletVisit({ t }) {
           <StoreMapDetails />
         </section>
         <Divider className="my-2 md:hidden" />
-        <section className="flex flex-col gap-8 md:col-span-7 md:col-start-6 md:row-span-2 md:row-start-1 md:justify-self-end">
+        <section className="flex flex-col gap-4 md:col-span-5 md:col-start-8 md:row-span-2 md:row-start-1">
           <HoursWidget />
           <Divider className="my-8 md:my-0" />
           <GoogleRating />

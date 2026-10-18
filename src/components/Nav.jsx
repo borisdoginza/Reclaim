@@ -75,7 +75,7 @@ export default function Nav() {
             {navigationItems.map(({ href, label }) => (
               <Fragment key={href}>
                 <a
-                  className="flex min-h-11 items-center text-[16px] text-accent transition-colors duration-150 hover:text-paper md:min-h-10 md:text-[14px] md:hover:text-accent"
+                  className="flex min-h-11 items-center text-[16px] text-accent transition-colors duration-150 hover:text-paper md:min-h-10 md:text-[14px] md:hover:text-paper lg:hover:text-paper"
                   href={href}
                   onClick={closeMenu}
                 >
@@ -85,7 +85,7 @@ export default function Nav() {
               </Fragment>
             ))}
             <a
-              className="flex min-h-11 items-center text-[16px] text-accent transition-colors duration-150 hover:text-paper md:min-h-10 md:text-[14px] md:hover:text-accent"
+              className="flex min-h-11 items-center text-[16px] text-accent transition-colors duration-150 hover:text-paper md:min-h-10 md:text-[14px] md:hover:text-paper lg:hover:text-paper"
               href="https://www.instagram.com/reclaimvintage.bp/"
               target="_blank"
               rel="noreferrer"
@@ -95,7 +95,7 @@ export default function Nav() {
             </a>
             <Divider className="md:hidden" />
             <a
-              className="flex min-h-11 items-center text-[16px] text-accent transition-colors duration-150 hover:text-paper md:min-h-10 md:text-[14px] md:hover:text-accent"
+              className="flex min-h-11 items-center text-[16px] text-accent transition-colors duration-150 hover:text-paper md:min-h-10 md:text-[14px] md:hover:text-paper lg:hover:text-paper"
               href="https://www.tiktok.com/@reclaimvintage.bp"
               target="_blank"
               rel="noreferrer"

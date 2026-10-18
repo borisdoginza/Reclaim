@@ -39,6 +39,17 @@
 
   --animate-flower-spin: flower-spin 20s linear infinite;
   --animate-stamp-spin: stamp-spin 30s linear infinite;
+  --animate-hero-fade-in: hero-fade-in 700ms ease-out both;
+
+  @keyframes hero-fade-in {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
 
   @keyframes flower-spin {
     to {

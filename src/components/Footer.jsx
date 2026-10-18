@@ -45,7 +45,7 @@ export default function Footer() {
             </a>
           </section>
         </div>
-        <section className="flex flex-col gap-2 md:col-start-2 md:row-start-2 lg:col-span-1 lg:col-start-auto lg:row-start-auto">
+        <section className="flex flex-col gap-2 md:col-start-2 md:row-start-2 lg:col-span-1 lg:col-start-auto lg:row-start-auto lg:justify-end lg:items-center">
           <Label as="h2" tone="dark">
             {t('visit.hours')}
           </Label>
@@ -68,7 +68,7 @@ export default function Footer() {
             })}
           </div>
         </section>
-        <section className="flex flex-col gap-2 md:col-start-3 md:row-start-2 lg:col-span-1 lg:col-start-auto lg:row-start-auto">
+        <section className="flex flex-col gap-2 md:col-start-3 md:row-start-2 lg:col-span-1 lg:col-start-auto lg:row-start-auto lg:justify-end lg:items-end">
           <Label as="h2" tone="dark">
             {t('footer.social')}
           </Label>
