@@ -8,6 +8,23 @@
   filter: grayscale(1) contrast(1.1);
 }
 
+.hero-desktop-image {
+  backface-visibility: hidden;
+  transform: perspective(var(--tilt-p)) rotateX(var(--tilt-x)) rotateY(var(--tilt-y));
+  transform-origin: center;
+  transition: transform 600ms ease-in-out;
+}
+
+.hero-desktop-image-animating {
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-desktop-image {
+    transition: none;
+  }
+}
+
 .hero-mobile-pagination .swiper-pagination-bullet {
   @apply size-2 rounded-none bg-secondary opacity-40;
 }
