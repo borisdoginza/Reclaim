@@ -14,6 +14,11 @@ const heroTilt = Object.freeze({
     '--tilt-x': '-1deg',
     '--tilt-y': '21deg',
   }),
+  pointer: Object.freeze({
+    '--pt-p': '900px',
+    '--pt-x': '9deg',
+    '--pt-y': '12deg',
+  }),
 })
 
 export default heroTilt

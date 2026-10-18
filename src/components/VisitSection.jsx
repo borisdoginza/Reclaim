@@ -89,7 +89,7 @@ export default function VisitSection() {
         <Divider />
         <Reveal
           as="section"
-          className="grid grid-cols-1 gap-8 md:grid-cols-12 md:items-start md:gap-x-8 md:gap-y-12 md:py-24 lg:block"
+          className="grid grid-cols-1 gap-8 md:grid-cols-12 md:items-start md:gap-x-8 md:gap-y-12 md:pt-0 md:pb-24 lg:block"
           id="collection"
           aria-labelledby="visit-title"
         >

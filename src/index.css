@@ -19,8 +19,18 @@
   will-change: transform;
 }
 
+.hero-pointer-tilt {
+  --mx: 0;
+  --my: 0;
+  backface-visibility: hidden;
+  transform: perspective(var(--pt-p)) rotateX(calc(var(--my, 0) * var(--pt-x) * -1)) rotateY(calc(var(--mx, 0) * var(--pt-y)));
+  transform-origin: center;
+  transition: transform 150ms ease-out;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .hero-desktop-image {
+  .hero-desktop-image,
+  .hero-pointer-tilt {
     transition: none;
   }
 }
