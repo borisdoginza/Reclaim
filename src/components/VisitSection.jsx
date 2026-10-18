@@ -45,7 +45,7 @@ function MobileTabletVisit({ t }) {
         <Divider className="my-2 md:hidden" />
         <section className="flex flex-col gap-4 md:col-span-5 md:col-start-8 md:row-span-2 md:row-start-1">
           <HoursWidget />
-          <Divider className="my-8 md:my-0" />
+          <Divider className="my-6 md:my-0" />
           <GoogleRating />
         </section>
       </div>
@@ -85,7 +85,7 @@ export default function VisitSection() {
 
   return (
     <>
-      <div className="mx-auto flex w-[min(calc(100%-40px),1280px)] flex-col gap-8 pb-8 md:gap-24 md:pb-0">
+      <div className="mx-auto flex w-[min(calc(100%-40px),1280px)] flex-col gap-8 pb-16 md:gap-24 md:pb-0">
         <Divider />
         <Reveal
           as="section"

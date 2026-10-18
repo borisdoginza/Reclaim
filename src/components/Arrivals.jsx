@@ -116,9 +116,9 @@ export default function Arrivals() {
   }
 
   return (
-    <Reveal as="section" className="py-10 pb-8 md:py-20 md:pb-24" id="new-arrivals" aria-labelledby="arrivals-title">
+    <Reveal as="section" className="mt-12 pb-16 md:py-20 md:pb-24" id="new-arrivals" aria-labelledby="arrivals-title">
       <div className="mx-auto w-[min(calc(100%-40px),1280px)]">
-        <Divider className="mb-10 md:mb-20" />
+        <Divider className="mb-16 md:mb-20" />
       </div>
       <div className="mx-auto w-[min(calc(100%-40px),1280px)] pb-[18px] md:pb-6">
         <p className="mb-3 text-[12px] font-medium tracking-[0.12em] text-secondary uppercase">
@@ -138,7 +138,7 @@ export default function Arrivals() {
         </p> */}
       </div>
       <div
-        className="px-gutter md:px-[max(32px,calc((100vw-1280px)/2))]"
+        className="mx-auto w-[min(calc(100%-40px),1280px)] md:px-0"
         onMouseEnter={pauseAutoplay}
         onMouseLeave={resumeAutoplay}
         onTouchStart={pauseAutoplay}
@@ -178,7 +178,7 @@ export default function Arrivals() {
           ))}
         </Swiper>
       </div>
-      <div className="mx-auto w-[min(calc(100%-40px),1280px)] pt-[18px]">
+      <div className="mx-auto w-[min(calc(100%-40px),1280px)] pt-[24px]">
         <a
           className="inline-flex min-h-12 w-full items-center justify-between gap-7 border border-ink bg-paper px-4 text-[13px] font-semibold tracking-[0.06em] text-ink uppercase transition-colors duration-150 hover:bg-ink hover:text-paper focus-visible:bg-ink focus-visible:text-paper md:w-auto"
           href="https://www.instagram.com/reclaimvintage.bp/"
