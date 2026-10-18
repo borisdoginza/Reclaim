@@ -6,7 +6,7 @@ import Divider from './Divider'
 export default function Nav() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [menuAnimationEnabled, setMenuAnimationEnabled] = useState(false)
-  const { t } = useTranslation()
+  const { t, i18n: currentI18n } = useTranslation()
 
   useEffect(() => {
     const desktopQuery = window.matchMedia('(min-width: 768px)')
@@ -21,8 +21,9 @@ export default function Nav() {
   }, [])
 
   const navigationItems = [
-    { href: '#new-arrivals', label: t('nav.arrivals') },
-    { href: '#collection', label: t('nav.collection') },
+    { href: '#selected-pieces', label: t('nav.arrivals') },
+    // { href: '#collection', label: t('nav.collection') },
+    { href: '#looks', label: t('nav.looks') },
     { href: '#visit', label: t('nav.visit') },
   ]
 
@@ -104,12 +105,20 @@ export default function Nav() {
               {t('nav.tiktok')}
             </a>
             <Divider className="md:hidden" />
-            <span
-              className="mt-3 flex min-h-8 w-fit min-w-8 items-center justify-center border border-accent text-[12px] tracking-[0.08em] md:mt-0"
-              aria-label={t('nav.language')}
+            <button
+              className="mt-3 flex min-h-8 w-fit min-w-8 cursor-pointer items-center justify-center border border-accent bg-transparent px-2 text-[12px] tracking-[0.08em] md:mt-0"
+              type="button"
+              aria-label={t('nav.switchLanguage', {
+                language: currentI18n.resolvedLanguage === 'hu' ? t('nav.english') : t('nav.hungarian'),
+              })}
+              onClick={() => {
+                const nextLanguage = currentI18n.resolvedLanguage === 'hu' ? 'en' : 'hu'
+                currentI18n.changeLanguage(nextLanguage)
+                closeMenu()
+              }}
             >
-              {t('nav.code')}
-            </span>
+              {currentI18n.resolvedLanguage === 'hu' ? 'EN' : 'HU'}
+            </button>
           </div>
           <div className="mx-auto w-[min(calc(100%-40px),1280px)] md:hidden">
             <Divider className="bg-secondary" />

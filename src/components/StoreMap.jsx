@@ -39,7 +39,7 @@ export function StoreAddress() {
   return (
     <div className="flex flex-col gap-2 md:col-span-3 md:col-start-6 md:row-start-1 lg:col-span-1 lg:col-start-1">
       <Label as="h3" className="md:leading-4 lg:leading-4">{t('visit.address')}</Label>
-      <p className="m-0 text-[16px] leading-[1.5]">{location.address}</p>
+      <p className="m-0 text-[16px] leading-[1.5]">{t('visit.addressValue')}</p>
     </div>
   )
 }

@@ -4,14 +4,19 @@
     "brandAlt": "ReClaim Vintage Shop",
     "menu": "Menu",
     "close": "Close",
-    "arrivals": "New arrivals",
+    "arrivals": "Selected pieces",
     "collection": "The collection",
+    "looks": "Looks",
     "visit": "Visit",
     "instagram": "Instagram",
     "tiktok": "TikTok",
     "mainLabel": "Main navigation",
     "language": "Current language: English",
-    "code": "EN"
+    "code": "EN",
+    "switchLanguage": "Switch language to {{language}}",
+    "english": "English",
+    "hungarian": "Hungarian"
+
   },
   "hero": {
     "galleryLabel": "Images of the ReClaim vintage shop",
@@ -26,11 +31,11 @@
     "eyebrow": "Vintage shop · Budapest",
     "title": "Good things, found again.",
     "description": "A little something with a past, waiting for its next chapter.",
-    "action": "Meet the edit"
+    "action": "See selected pieces"
   },
   "arrivals": {
-    "eyebrow": "Fresh from the rails",
-    "title": "Just dropped.",
+    "eyebrow": "Archive picks",
+    "title": "Selected pieces",
     "swipeHint": "Swipe to browse",
     "listLabel": "New vintage pieces",
     "browseAll": "Browse all pieces",
@@ -39,11 +44,126 @@
     "inStock": "In stock",
     "sold": "Sold"
   },
+  "products": {
+    "001": {
+      "name": "Vintage wool-blend coat",
+      "category": "Coat",
+      "condition": "Very good",
+      "alt": "Vintage coat from the autumn collection"
+    },
+    "002": {
+      "name": "Classic vintage half-zip",
+      "category": "Knitwear",
+      "condition": "Very good",
+      "alt": "Vintage half-zip knitwear"
+    },
+    "003": {
+      "name": "Relaxed-fit half-zip",
+      "category": "Knitwear",
+      "condition": "Good",
+      "alt": "Vintage half-zip knitwear in a relaxed fit"
+    },
+    "004": {
+      "name": "Vintage field jacket",
+      "category": "Jacket",
+      "condition": "Very good",
+      "alt": "Vintage field jacket"
+    },
+    "005": {
+      "name": "Everyday vintage jacket",
+      "category": "Jacket",
+      "condition": "Good",
+      "alt": "Everyday vintage jacket"
+    },
+    "006": {
+      "name": "Vintage workwear jacket",
+      "category": "Jacket",
+      "condition": "Very good",
+      "alt": "Vintage workwear jacket"
+    },
+    "007": {
+      "name": "Vintage denim jacket",
+      "category": "Jacket",
+      "condition": "Very good",
+      "alt": "Vintage denim jacket"
+    },
+    "008": {
+      "name": "Vintage zip-up jacket",
+      "category": "Jacket",
+      "condition": "Good",
+      "alt": "Vintage zip-up jacket"
+    },
+    "009": {
+      "name": "Vintage button-up shirt",
+      "category": "Shirt",
+      "condition": "Very good",
+      "alt": "Vintage button-up shirt"
+    },
+    "010": {
+      "name": "Vintage patterned shirt",
+      "category": "Shirt",
+      "condition": "Good",
+      "alt": "Vintage shirt from the new collection"
+    },
+    "011": {
+      "name": "Vintage relaxed shirt",
+      "category": "Shirt",
+      "condition": "Very good",
+      "alt": "Relaxed-fit vintage shirt"
+    },
+    "012": {
+      "name": "Vintage utility vest",
+      "category": "Vest",
+      "condition": "Very good",
+      "alt": "Vintage utility vest"
+    },
+    "013": {
+      "name": "Vintage outdoor vest",
+      "category": "Vest",
+      "condition": "Good",
+      "alt": "Vintage vest from the outdoor collection"
+    },
+    "014": {
+      "name": "Classic vintage vest",
+      "category": "Vest",
+      "condition": "Very good",
+      "alt": "Classic vintage vest"
+    },
+    "015": {
+      "name": "Vintage track zip-up",
+      "category": "Jacket",
+      "condition": "Good",
+      "alt": "Vintage track jacket with a full zip"
+    },
+    "016": {
+      "name": "Vintage lightweight zip-up",
+      "category": "Jacket",
+      "condition": "Very good",
+      "alt": "Vintage lightweight jacket with a full zip"
+    }
+  },
+  "looks": {
+    "eyebrow": "Looks from the shop",
+    "title": "Good looks, found again.",
+    "galleryLabel": "A collage of vintage looks",
+    "openImage": "Open image: {{description}}",
+    "closeImage": "Close image",
+    "images": {
+      "bigVertical": "A black-and-white patterned top styled with blue jeans and wooden clogs",
+      "smallSquare3": "Pinstripe trousers styled with black lace-up boots",
+      "vertical": "A black double-breasted jacket with brass buttons and tailored trousers",
+      "vertical2": "A checked vintage jacket styled with black trousers",
+      "smallSquare1": "Blue jeans with brown platform clogs",
+      "smallSquare2": "Pinstripe trousers styled with black lace-up boots",
+      "horizontal": "A green striped knit top styled with black trousers"
+    }
+  },
   "visit": {
     "eyebrow": "A note from the shop",
     "title": "Come find your next favourite.",
     "description": "A considered mix of vintage, archive and workwear. Come browse, take your time, and see what finds you.",
     "address": "Address",
+    "addressValue": "Budapest, Király u. 37, 1077",
     "hours": "Opening hours"
   },
   "hours": {
@@ -62,6 +182,15 @@
       "friday": "Friday",
       "saturday": "Saturday",
       "sunday": "Sunday"
+    },
+    "dayInitials": {
+      "monday": "M",
+      "tuesday": "T",
+      "wednesday": "W",
+      "thursday": "T",
+      "friday": "F",
+      "saturday": "S",
+      "sunday": "S"
     },
     "shortDays": {
       "monday": "Mon",

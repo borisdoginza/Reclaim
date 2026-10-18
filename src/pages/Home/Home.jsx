@@ -1,5 +1,6 @@
 import Arrivals from '../../components/Arrivals'
 import Hero from '../../components/Hero'
+import LooksSection from '../../components/LooksSection'
 import VisitSection from '../../components/VisitSection'
 
 export default function Home() {
@@ -7,7 +8,10 @@ export default function Home() {
     <>
       <Hero />
       <Arrivals />
-      <VisitSection />
+      <div className="flex flex-col gap-8 md:gap-24">
+        <LooksSection />
+        <VisitSection />
+      </div>
     </>
   )
 }

@@ -86,7 +86,7 @@ export default function VisitSection() {
   return (
     <>
       <div className="mx-auto flex w-[min(calc(100%-40px),1280px)] flex-col gap-8 pb-16 md:gap-24 md:pb-0">
-        <Divider />
+        <Divider className="mb-6 md:my-0" />
         <Reveal
           as="section"
           className="grid grid-cols-1 gap-8 md:grid-cols-12 md:items-start md:gap-x-8 md:gap-y-12 md:pt-0 md:pb-24 lg:block"

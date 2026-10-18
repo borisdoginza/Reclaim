@@ -64,7 +64,7 @@ export default function HoursWidget() {
                 })}
                 aria-current={isToday ? 'date' : undefined}
               >
-                {entry.day[0].toUpperCase()}
+                {t(`hours.dayInitials.${entry.day}`)}
               </span>
             )
           })}

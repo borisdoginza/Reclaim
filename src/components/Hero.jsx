@@ -35,9 +35,9 @@ export default function Hero() {
           </p>
           <a
             className="inline-flex min-h-12 items-center justify-between gap-7 border border-ink bg-ink px-4 text-[13px] font-semibold tracking-[0.06em] text-paper uppercase transition-colors duration-150 hover:text-ink hover:bg-paper focus-visible:bg-secondary"
-            href="#new-arrivals"
+            href="#selected-pieces"
           >
-            {t('hero.action')}<span aria-hidden="true">↘</span>
+            {t('hero.action')}<span aria-hidden="true">↓</span>
           </a>
         </div>
       </div>

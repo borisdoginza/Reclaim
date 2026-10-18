@@ -116,7 +116,7 @@ export default function Arrivals() {
   }
 
   return (
-    <Reveal as="section" className="mt-12 pb-16 md:py-20 md:pb-24" id="new-arrivals" aria-labelledby="arrivals-title">
+    <Reveal as="section" className="mt-12 pb-16 md:py-20 md:pb-24" id="selected-pieces" aria-labelledby="arrivals-title">
       <div className="mx-auto w-[min(calc(100%-40px),1280px)]">
         <Divider className="mb-16 md:mb-20" />
       </div>

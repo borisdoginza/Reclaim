@@ -1,0 +1,230 @@
+{
+  "nav": {
+    "home": "A ReClaim Vintage Shop kezdőlapja",
+    "brandAlt": "ReClaim Vintage Shop",
+    "menu": "Menü",
+    "close": "Bezárás",
+    "arrivals": "Válogatott darabok",
+    "collection": "A kollekció",
+    "looks": "Szettjeink",
+    "visit": "Üzletünk",
+    "instagram": "Instagram",
+    "tiktok": "TikTok",
+    "mainLabel": "Fő navigáció",
+    "language": "Jelenlegi nyelv: magyar",
+    "code": "HU",
+    "switchLanguage": "Nyelvváltás erre: {{language}}",
+    "english": "angol",
+    "hungarian": "magyar"
+  },
+  "hero": {
+    "galleryLabel": "A ReClaim Vintage Shop képei",
+    "previousImage": "Előző kép",
+    "nextImage": "Következő kép",
+    "selectImage": "Fő kép kiválasztása: {{number}}",
+    "images": {
+      "main": "A ReClaim Vintage Shop belső tere ruhatartó állványokkal és a megnyitó plakátjával",
+      "detail": "Kerámialó-dísz és vintage ülőbútor az üzletben",
+      "opening": "Az üzlet belső tere ruhatartókkal és kézzel rajzolt kirakatgrafikával"
+    },
+    "eyebrow": "Vintage üzlet · Budapest",
+    "title": "Jó dolgok, újra megtalálva.",
+    "description": "Egy különleges darab múltja, amely a következő történetére vár.",
+    "action": "Válogatott darabok"
+  },
+  "arrivals": {
+    "eyebrow": "Archív kincsek",
+    "title": "Válogatott darabok",
+    "swipeHint": "Húzd el a további darabokért",
+    "listLabel": "Új vintage darabok",
+    "browseAll": "Az összes darab megtekintése",
+    "askAbout": "Érdeklődés erről a darabról: {{name}}",
+    "size": "Méret: {{size}}",
+    "inStock": "Készleten",
+    "sold": "Elkelt"
+  },
+  "products": {
+    "001": {
+      "name": "Vintage gyapjúkeverék kabát",
+      "category": "Kabát",
+      "condition": "Nagyon jó állapotú",
+      "alt": "Vintage kabát az őszi kollekcióból"
+    },
+    "002": {
+      "name": "Klasszikus vintage félcipzáras pulóver",
+      "category": "Kötöttáru",
+      "condition": "Nagyon jó állapotú",
+      "alt": "Vintage félcipzáras kötött pulóver"
+    },
+    "003": {
+      "name": "Laza fazonú félcipzáras pulóver",
+      "category": "Kötöttáru",
+      "condition": "Jó állapotú",
+      "alt": "Laza fazonú vintage félcipzáras kötött pulóver"
+    },
+    "004": {
+      "name": "Vintage terepkabát",
+      "category": "Dzseki",
+      "condition": "Nagyon jó állapotú",
+      "alt": "Vintage terepkabát"
+    },
+    "005": {
+      "name": "Mindennapi vintage dzseki",
+      "category": "Dzseki",
+      "condition": "Jó állapotú",
+      "alt": "Mindennapi viseletre való vintage dzseki"
+    },
+    "006": {
+      "name": "Vintage munkaruhastílusú dzseki",
+      "category": "Dzseki",
+      "condition": "Nagyon jó állapotú",
+      "alt": "Vintage munkaruhastílusú dzseki"
+    },
+    "007": {
+      "name": "Vintage farmerdzseki",
+      "category": "Dzseki",
+      "condition": "Nagyon jó állapotú",
+      "alt": "Vintage farmerdzseki"
+    },
+    "008": {
+      "name": "Vintage cipzáras dzseki",
+      "category": "Dzseki",
+      "condition": "Jó állapotú",
+      "alt": "Vintage cipzáras dzseki"
+    },
+    "009": {
+      "name": "Vintage gombos ing",
+      "category": "Ing",
+      "condition": "Nagyon jó állapotú",
+      "alt": "Vintage gombos ing"
+    },
+    "010": {
+      "name": "Vintage mintás ing",
+      "category": "Ing",
+      "condition": "Jó állapotú",
+      "alt": "Vintage ing az új kollekcióból"
+    },
+    "011": {
+      "name": "Laza fazonú vintage ing",
+      "category": "Ing",
+      "condition": "Nagyon jó állapotú",
+      "alt": "Laza fazonú vintage ing"
+    },
+    "012": {
+      "name": "Vintage utility mellény",
+      "category": "Mellény",
+      "condition": "Nagyon jó állapotú",
+      "alt": "Vintage praktikus zsebes mellény"
+    },
+    "013": {
+      "name": "Vintage outdoor mellény",
+      "category": "Mellény",
+      "condition": "Jó állapotú",
+      "alt": "Vintage mellény az outdoor kollekcióból"
+    },
+    "014": {
+      "name": "Klasszikus vintage mellény",
+      "category": "Mellény",
+      "condition": "Nagyon jó állapotú",
+      "alt": "Klasszikus vintage mellény"
+    },
+    "015": {
+      "name": "Vintage sportos cipzáras felső",
+      "category": "Dzseki",
+      "condition": "Jó állapotú",
+      "alt": "Teljes hosszában cipzáras vintage sportdzseki"
+    },
+    "016": {
+      "name": "Vintage könnyű cipzáras dzseki",
+      "category": "Dzseki",
+      "condition": "Nagyon jó állapotú",
+      "alt": "Teljes hosszában cipzáras, könnyű vintage dzseki"
+    }
+  },
+  "looks": {
+    "eyebrow": "Szettötletek az üzletből",
+    "title": "Jó szettek, újra felfedezve.",
+    "galleryLabel": "Vintage szettek kollázsa",
+    "openImage": "Kép megnyitása: {{description}}",
+    "closeImage": "Kép bezárása",
+    "images": {
+      "bigVertical": "Fekete-fehér mintás felső kék farmerrel és fapapuccsal",
+      "smallSquare3": "Tűcsíkos nadrág fekete fűzős bakancscsal",
+      "vertical": "Fekete, kétsoros zakó rézgombokkal és szabott nadrággal",
+      "vertical2": "Kockás vintage zakó fekete nadrággal",
+      "smallSquare1": "Kék farmer barna platformos fapapuccsal",
+      "smallSquare2": "Tűcsíkos nadrág fekete fűzős bakancscsal",
+      "horizontal": "Zöld csíkos kötött felső fekete nadrággal"
+    }
+  },
+  "visit": {
+    "eyebrow": "Üzenet az üzletből",
+    "title": "Találd meg a következő kedvenced.",
+    "description": "Gondosan válogatott vintage, archív és munkaruhastílusú darabok. Nézz körül, szánj rá időt, és találd meg, ami neked való.",
+    "address": "Cím",
+    "addressValue": "Budapest, Király utca 37., 1077",
+    "hours": "Nyitvatartás"
+  },
+  "hours": {
+    "statusLabel": "Az üzlet aktuális állapota",
+    "openNow": "Most nyitva",
+    "closedNow": "Most zárva",
+    "closedDay": "Zárva",
+    "weekLabel": "A hét napjainak nyitvatartása",
+    "today": "Ma",
+    "dayStatus": "{{day}} {{status}}",
+    "days": {
+      "monday": "hétfő",
+      "tuesday": "kedd",
+      "wednesday": "szerda",
+      "thursday": "csütörtök",
+      "friday": "péntek",
+      "saturday": "szombat",
+      "sunday": "vasárnap"
+    },
+    "dayInitials": {
+      "monday": "H",
+      "tuesday": "K",
+      "wednesday": "Sze",
+      "thursday": "Cs",
+      "friday": "P",
+      "saturday": "Szo",
+      "sunday": "V"
+    },
+    "shortDays": {
+      "monday": "H",
+      "tuesday": "K",
+      "wednesday": "Sze",
+      "thursday": "Cs",
+      "friday": "P",
+      "saturday": "Szo",
+      "sunday": "V"
+    }
+  },
+  "map": {
+    "label": "Az üzlet helyét mutató térkép",
+    "coordinatesTodo": "[TODO: a koordináták ellenőrzése]",
+    "loading": "Térkép betöltése",
+    "openGoogleMaps": "Megnyitás a Google Térképen",
+    "attribution": "© OpenStreetMap közreműködők"
+  },
+  "rating": {
+    "title": "Az üzlet értékelése",
+    "score": "{{score}} a Google Térképen",
+    "reviewCount": "{{count}} értékelés",
+    "readReviews": "Értékelések megtekintése"
+  },
+  "footer": {
+    "note": "Jó leletek, jó történetek.",
+    "social": "Kövess minket",
+    "brand": "ReClaim Vintage Shop",
+    "copyright": "ReClaim Vintage Budapest",
+    "instagram": "Instagram",
+    "tiktok": "TikTok"
+  },
+  "notFound": {
+    "brand": "ReClaim Vintage Shop",
+    "title": "Ez az oldal nem található.",
+    "home": "Vissza a főoldalra"
+  }
+}

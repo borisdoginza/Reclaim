@@ -41,7 +41,7 @@ export default function Footer() {
               target="_blank"
               rel="noreferrer"
             >
-              {location.address}
+              {t('visit.addressValue')}
             </a>
           </section>
         </div>
