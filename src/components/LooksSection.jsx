@@ -12,6 +12,7 @@ import smallSquare2Image from '../assets/images/looks/small-square-2.jpg'
 import smallSquare3Image from '../assets/images/looks/small-square-3.jpg'
 import horizontalImage from '../assets/images/looks/horizontal-rectangle.jpg'
 import vertical2Image from '../assets/images/looks/vertical-rectange-2.jpg'
+import looksFit from '../config/looksFit'
 
 const lookImages = {
   'big-vertical-rectangle.jpg': bigVerticalImage,
@@ -100,10 +101,16 @@ export default function LooksSection() {
     <div className="mx-auto flex w-[min(calc(100%-40px),1280px)] flex-col gap-8 md:gap-24" id="looks">
       <Divider className="mb-6 md:my-0" />
       <Reveal as="section" aria-labelledby="looks-title">
-        <div className="mb-8 md:mb-12">
+        <div
+          className="mb-8 [container-type:inline-size] md:mb-12"
+          style={{
+            '--looks-fit-en': looksFit.en,
+            '--looks-fit-hu': looksFit.hu,
+          }}
+        >
           <Label className="mb-3">{t('looks.eyebrow')}</Label>
           <h2
-            className="m-0 max-w-[720px] font-display text-[clamp(40px,12vw,56px)] leading-[0.92] font-normal tracking-[-0.055em] uppercase md:text-[64px]"
+            className="looks-title m-0 min-w-0 max-w-[720px] font-display leading-[0.92] font-normal tracking-[-0.055em] uppercase"
             id="looks-title"
           >
             {t('looks.title')}

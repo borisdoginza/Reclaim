@@ -12,16 +12,23 @@ import Divider from './Divider'
 import Reveal from './Reveal'
 import Label from './Label'
 import useMediaQuery from '../hooks/useMediaQuery'
+import visitFit from '../config/visitFit'
 
 function VisitIntro({ t }) {
   return (
-    <div className="flex flex-col gap-4 md:col-span-7 md:row-start-1 lg:col-span-1 lg:col-start-1 lg:row-start-1 lg:row-span-2">
+    <div
+      className="flex flex-col gap-4 md:col-span-7 md:row-start-1 lg:col-span-1 lg:col-start-1 lg:row-start-1 lg:row-span-2 lg:[container-type:inline-size]"
+      style={{
+        '--visit-fit-en': visitFit.en,
+        '--visit-fit-hu': visitFit.hu,
+      }}
+    >
       <Label className="flex items-center gap-[9px] md:leading-4 lg:leading-4">
         <FlowerMark className="h-5 w-5 shrink-0 fill-current md:h-4 md:w-4 lg:h-5 lg:w-5" />
         {t('visit.eyebrow')}
       </Label>
       <h2
-        className="m-0 max-w-[440px] font-display text-[34px] leading-[0.98] font-normal tracking-[-0.04em] uppercase md:text-[48px]"
+        className="visit-title m-0 min-w-0 max-w-[440px] font-display text-[34px] leading-[0.98] font-normal tracking-[-0.04em] uppercase md:text-[48px]"
         id="visit-title"
       >
         {t('visit.title')}

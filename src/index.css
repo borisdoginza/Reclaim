@@ -28,6 +28,73 @@
   transition: transform 150ms ease-out;
 }
 
+:lang(en) .hero-title {
+  --hero-fit: var(--hero-fit-en);
+}
+
+:lang(hu) .hero-title {
+  --hero-fit: var(--hero-fit-hu);
+}
+
+:lang(en) .looks-title {
+  --looks-fit: var(--looks-fit-en);
+}
+
+:lang(hu) .looks-title {
+  --looks-fit: var(--looks-fit-hu);
+}
+
+:lang(en) .visit-title {
+  --visit-fit: var(--visit-fit-en);
+}
+
+:lang(hu) .visit-title {
+  --visit-fit: var(--visit-fit-hu);
+}
+
+.hero-title {
+  font-size: clamp(2.25rem, min(14vw, calc(100cqw / var(--hero-fit))), 4rem);
+  overflow-wrap: break-word;
+  text-wrap: balance;
+}
+
+.looks-title {
+  font-size: clamp(2.25rem, min(12vw, calc(100cqw / var(--looks-fit))), 3.5rem);
+  overflow-wrap: break-word;
+  text-wrap: balance;
+}
+
+.visit-title {
+  overflow-wrap: break-word;
+  text-wrap: balance;
+}
+
+@media (min-width: 768px) {
+  .hero-title {
+    font-size: clamp(2.5rem, calc(100cqw / var(--hero-fit)), 6rem);
+  }
+
+  .looks-title {
+    font-size: 64px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .visit-title {
+    font-size: clamp(2rem, calc(100cqw / var(--visit-fit)), 3rem);
+  }
+}
+
+@media (max-width: 359px) {
+  :lang(hu) .hero-title {
+    font-size: 2rem;
+  }
+
+  :lang(hu) .looks-title {
+    font-size: 2rem;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .hero-desktop-image,
   .hero-pointer-tilt {

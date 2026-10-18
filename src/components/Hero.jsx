@@ -3,30 +3,43 @@ import FlowerMark from './FlowerMark'
 import HeroDesktopCollage from './HeroDesktopCollage'
 import HeroMobileSlider from './HeroMobileSlider'
 import useMediaQuery from '../hooks/useMediaQuery'
+import heroFit from '../config/heroFit'
 
 export default function Hero() {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   const isDesktop = useMediaQuery('(min-width: 768px)')
 
   return (
     <section
-      className="mx-auto grid w-[min(calc(100%-40px),1280px)] grid-cols-1 items-center gap-6 pt-5 pb-12 md:grid-cols-[1.05fr_0.95fr] md:gap-[clamp(40px,8vw,112px)] md:pt-20 md:pb-20"
+      className="mx-auto grid w-[min(calc(100%-40px),1280px)] grid-cols-1 items-center gap-6 pt-5 pb-12 md:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] md:gap-[clamp(40px,calc(8vw-1.4rem),112px)] md:pt-20 md:pb-20"
       aria-labelledby="hero-title"
     >
-      <div className="motion-safe:animate-hero-fade-in">
+      <div className="min-w-0 motion-safe:animate-hero-fade-in">
         {isDesktop ? <HeroDesktopCollage /> : <HeroMobileSlider />}
       </div>
-      <div className="md:py-8">
+      <div
+        className="min-w-0 [container-type:inline-size] md:py-8"
+        style={{
+          '--hero-fit-en': heroFit.en,
+          '--hero-fit-hu': heroFit.hu,
+        }}
+      >
         <div className="motion-safe:animate-hero-fade-in">
           <p className="mb-[14px] flex items-center gap-[9px] text-[12px] leading-[1.4] font-medium tracking-[0.12em] text-secondary uppercase">
             <FlowerMark className="h-5 w-5 shrink-0 fill-current" />
             {t('hero.eyebrow')}
           </p>
           <h1
-            className="m-0 max-w-[720px] font-display text-[clamp(44px,14vw,64px)] leading-[0.92] font-normal tracking-[-0.055em] uppercase md:text-[clamp(64px,8vw,96px)]"
+            className="hero-title m-0 w-full max-w-[720px] min-w-0 font-display text-[clamp(2.25rem,14vw,4rem)] leading-[0.92] font-normal tracking-[-0.055em] uppercase"
             id="hero-title"
           >
-            {t('hero.title')}
+            {i18n.resolvedLanguage === 'hu' ? (
+              <>
+                {t('hero.titleStart')}{' '}
+                <br className="hidden md:block lg:hidden" />
+                {t('hero.titleRest')}
+              </>
+            ) : t('hero.title')}
           </h1>
         </div>
         <div className="motion-safe:animate-hero-fade-in motion-safe:[animation-delay:500ms]">

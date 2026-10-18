@@ -30,6 +30,8 @@
     },
     "eyebrow": "Vintage shop · Budapest",
     "title": "Good things, found again.",
+    "titleStart": "Good",
+    "titleRest": "things, found again.",
     "description": "A little something with a past, waiting for its next chapter.",
     "action": "See selected pieces"
   },
