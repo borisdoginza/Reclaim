@@ -116,7 +116,7 @@ export default function Arrivals() {
   }
 
   return (
-    <Reveal as="section" className="mt-12 pb-16 md:py-20 md:pb-24" id="selected-pieces" aria-labelledby="arrivals-title">
+    <Reveal as="section" className="mt-12 pb-16 md:py-0 md:pb-24" id="selected-pieces" aria-labelledby="arrivals-title">
       <div className="mx-auto w-[min(calc(100%-40px),1280px)]">
         <Divider className="mb-16 md:mb-20" />
       </div>
@@ -126,12 +126,12 @@ export default function Arrivals() {
         </p>
         <div className="flex items-center justify-between gap-3">
           <h2
-            className="m-0 max-w-[720px] font-display text-[clamp(40px,12vw,56px)] leading-[0.92] font-normal tracking-[-0.055em] uppercase md:text-[64px]"
+            className="m-0 min-w-0 max-w-[720px] font-display text-[clamp(36px,6vw,56px)] leading-[0.92] font-normal tracking-[-0.055em] uppercase md:text-[64px]"
             id="arrivals-title"
           >
             {t('arrivals.title')}
           </h2>
-          <FlowerMark className="mb-[3px] h-[30px] w-[30px] shrink-0 fill-current" />
+          <FlowerMark className="h-[30px] w-[30px] shrink-0 fill-current" />
         </div>
         {/* <p className="mt-[18px] mb-0 text-[13px] text-secondary">
           {t('arrivals.swipeHint')}
@@ -185,7 +185,7 @@ export default function Arrivals() {
           target="_blank"
           rel="noreferrer"
         >
-          {t('arrivals.browseAll')}<span aria-hidden="true">↗</span>
+          {t('arrivals.browseAll')}<span aria-hidden="true" className="text-xl font-black flex items-center justify-center leading-none scale-x-65 select-none translate-y-[-2px] translate-x-[3px]">→</span>
         </a>
       </div>
     </Reveal>

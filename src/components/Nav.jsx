@@ -106,7 +106,7 @@ export default function Nav() {
             </a>
             <Divider className="md:hidden" />
             <button
-              className="mt-3 flex min-h-8 w-fit min-w-8 cursor-pointer items-center justify-center border border-accent bg-transparent px-2 text-[12px] tracking-[0.08em] md:mt-0"
+              className="mt-3 flex min-h-8 w-fit min-w-8 cursor-pointer items-center justify-center border border-accent bg-transparent px-2 text-[12px] tracking-[0.08em] md:mt-0 hover:bg-paper hover:text-ink transition-colors duration-150"
               type="button"
               aria-label={t('nav.switchLanguage', {
                 language: currentI18n.resolvedLanguage === 'hu' ? t('nav.english') : t('nav.hungarian'),

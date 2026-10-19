@@ -69,14 +69,14 @@ export function StoreMapButton() {
 
   return (
     <a
-      className={`inline-flex min-h-11 w-fit items-center justify-between gap-6 border border-ink px-4 text-[13px] font-semibold tracking-[0.06em] uppercase md:whitespace-nowrap lg:gap-3 lg:whitespace-nowrap lg:px-2 ${location.googleMapsUrl ? 'bg-paper text-ink transition-colors duration-150 hover:bg-ink hover:text-paper' : 'pointer-events-none bg-accent text-ink'}`}
+      className={`inline-flex min-h-11 w-fit items-center justify-between gap-4 border border-ink px-4 text-[13px] font-semibold tracking-[0.06em] uppercase md:whitespace-nowrap lg:gap-3 lg:whitespace-nowrap lg:px-2 ${location.googleMapsUrl ? 'bg-paper text-ink transition-colors duration-150 hover:bg-ink hover:text-paper' : 'pointer-events-none bg-accent text-ink'}`}
       href={location.googleMapsUrl ?? '#visit'}
       aria-disabled={!location.googleMapsUrl}
       onClick={(event) => {
         if (!location.googleMapsUrl) event.preventDefault()
       }}
     >
-      {t('map.openGoogleMaps')}<span aria-hidden="true">↗</span>
+      {t('map.openGoogleMaps')}<span aria-hidden="true" className="text-xl font-black flex items-center justify-center leading-none scale-x-65 select-none translate-y-[-2px] translate-x-[3px]">→</span>
     </a>
   )
 }

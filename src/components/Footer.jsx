@@ -79,7 +79,7 @@ export default function Footer() {
               target="_blank"
               rel="noreferrer"
             >
-              {t('footer.instagram')} ↗
+              {t('footer.instagram')} 	→
             </a>
             <a
               className="relative inline-flex text-[16px] underline underline-offset-4 transition-opacity duration-150 after:absolute after:inset-x-0 after:-inset-y-2.5 after:content-[''] hover:opacity-70"
@@ -87,7 +87,7 @@ export default function Footer() {
               target="_blank"
               rel="noreferrer"
             >
-              {t('footer.tiktok')} ↗
+              {t('footer.tiktok')} 	→
             </a>
           </div>
         </section>

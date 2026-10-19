@@ -11,7 +11,7 @@ export default function Hero() {
 
   return (
     <section
-      className="mx-auto grid w-[min(calc(100%-40px),1280px)] grid-cols-1 items-center gap-6 pt-5 pb-12 md:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] md:gap-[clamp(40px,calc(8vw-1.4rem),112px)] md:pt-20 md:pb-20"
+      className="mx-auto grid w-[min(calc(100%-40px),1280px)] grid-cols-1 items-center gap-6 pt-5 pb-6 md:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] md:gap-[clamp(40px,calc(8vw-1.4rem),112px)] md:pt-30 md:pb-20"
       aria-labelledby="hero-title"
     >
       <div className="min-w-0 motion-safe:animate-hero-fade-in">
