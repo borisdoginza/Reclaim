@@ -6,7 +6,7 @@
     "size": "M",
     "condition": "Very good",
     "price": "€85",
-    "image": "../assets/images/coat-1/Some of our new vintage pieces for autumn ☁️(2).jpg",
+    "image": "../assets/images/coat-1/coat-1.jpg",
     "alt": "Vintage coat from the autumn collection",
     "sold": false
   },
@@ -17,7 +17,7 @@
     "size": "L",
     "condition": "Very good",
     "price": "€48",
-    "image": "../assets/images/half-zip-1/We are fully prepared for the new season 🍂☁️(3).jpg",
+    "image": "../assets/images/half-zip-1/half-zip-1.jpg",
     "alt": "Vintage half-zip knitwear",
     "sold": false
   },
@@ -28,7 +28,7 @@
     "size": "M",
     "condition": "Good",
     "price": "€42",
-    "image": "../assets/images/half-zip-2/We are fully prepared for the new season 🍂☁️(2).jpg",
+    "image": "../assets/images/half-zip-2/half-zip-2.jpg",
     "alt": "Vintage half-zip knitwear in a relaxed fit",
     "sold": false
   },
@@ -39,7 +39,7 @@
     "size": "L",
     "condition": "Very good",
     "price": "€72",
-    "image": "../assets/images/jacket-1/New vintage jackets & coats are now available in the store 🧥(4).jpg",
+    "image": "../assets/images/jacket-1/jacket-1.jpg",
     "alt": "Vintage field jacket",
     "sold": false
   },
@@ -50,7 +50,7 @@
     "size": "M",
     "condition": "Good",
     "price": "€58",
-    "image": "../assets/images/jacket-2/New vintage jackets & coats are now available in the store 🧥(2).jpg",
+    "image": "../assets/images/jacket-2/jacket-1.jpg",
     "alt": "Everyday vintage jacket",
     "sold": false
   },
@@ -61,7 +61,7 @@
     "size": "L",
     "condition": "Very good",
     "price": "€68",
-    "image": "../assets/images/jacket-3/New vintage jackets & coats are now available in the store 🧥.jpg",
+    "image": "../assets/images/jacket-3/jacket-1.jpg",
     "alt": "Vintage workwear jacket",
     "sold": false
   },
@@ -72,7 +72,7 @@
     "size": "L",
     "condition": "Very good",
     "price": "€65",
-    "image": "../assets/images/jacket-4/Some of our new vintage pieces for autumn ☁️.jpg",
+    "image": "../assets/images/jacket-4/jacket-1.jpg",
     "alt": "Vintage denim jacket",
     "sold": false
   },
@@ -83,7 +83,7 @@
     "size": "M",
     "condition": "Good",
     "price": "€55",
-    "image": "../assets/images/jacket-5/Some of our new vintage pieces for autumn ☁️(4).jpg",
+    "image": "../assets/images/jacket-5/jacket-1.jpg",
     "alt": "Vintage zip-up jacket",
     "sold": false
   },
@@ -94,7 +94,7 @@
     "size": "M",
     "condition": "Very good",
     "price": "€38",
-    "image": "../assets/images/shirt-1/Some new pieces & details 🔎(4).jpg",
+    "image": "../assets/images/shirt-1/shirt-1.jpg",
     "alt": "Vintage button-up shirt",
     "sold": false
   },
@@ -105,7 +105,7 @@
     "size": "L",
     "condition": "Good",
     "price": "€35",
-    "image": "../assets/images/shirt-2/Some new pieces & details 🔎(2).jpg",
+    "image": "../assets/images/shirt-2/shirt-1.jpg",
     "alt": "Vintage shirt from the new collection",
     "sold": false
   },
@@ -116,7 +116,7 @@
     "size": "S",
     "condition": "Very good",
     "price": "€40",
-    "image": "../assets/images/shirt-3/Some new pieces & details 🔎.jpg",
+    "image": "../assets/images/shirt-3/shirt-1.jpg",
     "alt": "Relaxed-fit vintage shirt",
     "sold": false
   },
@@ -127,7 +127,7 @@
     "size": "L",
     "condition": "Very good",
     "price": "€45",
-    "image": "../assets/images/vest-1/New vintage vests in the store 🎣(4).jpg",
+    "image": "../assets/images/vest-1/vest-1.jpg",
     "alt": "Vintage utility vest",
     "sold": false
   },
@@ -138,7 +138,7 @@
     "size": "M",
     "condition": "Good",
     "price": "€42",
-    "image": "../assets/images/vest-2/New vintage vests in the store 🎣(2).jpg",
+    "image": "../assets/images/vest-2/vest-1.jpg",
     "alt": "Vintage vest from the outdoor collection",
     "sold": false
   },
@@ -149,7 +149,7 @@
     "size": "M",
     "condition": "Very good",
     "price": "€39",
-    "image": "../assets/images/vest-3/New vintage vests in the store 🎣.jpg",
+    "image": "../assets/images/vest-3/vest-1.jpg",
     "alt": "Classic vintage vest",
     "sold": false
   },
@@ -160,7 +160,7 @@
     "size": "L",
     "condition": "Good",
     "price": "€52",
-    "image": "../assets/images/zip-1/We are fully prepared for the new season 🍂☁️(1).jpg",
+    "image": "../assets/images/zip-1/half-zip-1.jpg",
     "alt": "Vintage track jacket with a full zip",
     "sold": false
   },
@@ -171,7 +171,7 @@
     "size": "M",
     "condition": "Very good",
     "price": "€49",
-    "image": "../assets/images/zip-2/We are fully prepared for the new season 🍂☁️.jpg",
+    "image": "../assets/images/zip-2/half-zip-2.jpg",
     "alt": "Vintage lightweight jacket with a full zip",
     "sold": false
   }
