@@ -65,7 +65,7 @@
 }
 
 .visit-title {
-  overflow-wrap: break-word;
+  /* overflow-wrap: break-word; */
   text-wrap: balance;
 }
 

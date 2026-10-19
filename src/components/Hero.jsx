@@ -30,7 +30,7 @@ export default function Hero() {
             {t('hero.eyebrow')}
           </p>
           <h1
-            className="hero-title m-0 w-full max-w-[720px] min-w-0 font-display text-[clamp(2.25rem,14vw,4rem)] leading-[0.92] font-normal tracking-[-0.055em] uppercase"
+            className="hero-title m-0 w-full max-w-[600px] min-w-0 font-display text-[clamp(2.25rem,14vw,4rem)] leading-[0.92] font-normal tracking-[-0.055em] uppercase"
             id="hero-title"
           >
             {i18n.resolvedLanguage === 'hu' ? (

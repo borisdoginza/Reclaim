@@ -46,11 +46,11 @@ export default function HeroMobileSlider() {
           ))}
         </Swiper>
         <span
-          className="pointer-events-none absolute top-3 -right-10 z-[10] h-[58px] w-[150px] -rotate-[128deg] overflow-hidden"
+          className="pointer-events-none absolute top-2 -right-10 z-[10] h-[48px] w-[150px] -rotate-[125deg] overflow-hidden"
           aria-hidden="true"
         >
           <img
-            className="absolute top-[-40px] left-[-34px] w-[450px] max-w-none"
+            className="absolute top-[-40px] left-[-34px] w-[420px] max-w-none"
             src={tapeImage}
             alt=""
           />

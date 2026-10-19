@@ -79,7 +79,7 @@ export default function Footer() {
               target="_blank"
               rel="noreferrer"
             >
-              {t('footer.instagram')} 	→
+              {t('footer.instagram')} →
             </a>
             <a
               className="relative inline-flex text-[16px] underline underline-offset-4 transition-opacity duration-150 after:absolute after:inset-x-0 after:-inset-y-2.5 after:content-[''] hover:opacity-70"
@@ -95,9 +95,19 @@ export default function Footer() {
       <div className="relative z-10 mx-auto w-[min(calc(100%-40px),1280px)]">
         <Divider />
       </div>
-      <div className="relative z-10 mx-auto flex min-h-12 w-[min(calc(100%-40px),1280px)] items-center justify-between text-[12px] tracking-[0.08em] text-accent uppercase">
+      <div className="relative z-10 mx-auto flex min-h-12 w-[min(calc(100%-40px),1280px)] flex-wrap items-center justify-between gap-x-4 text-[12px] tracking-[0.08em] text-accent uppercase">
+        <div className='flex flex-row gap-6 items-center md:justify-center justify-between'>
         <span>{t('footer.copyright')}</span>
-        <span>{t('nav.code')}</span>
+        <a
+          className="self-end text-right relative inline-flex min-h-11 items-center after:absolute after:inset-x-0 after:-inset-y-2.5 after:content-[''] hover:opacity-70"
+          href="https://www.magnific.com"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {t('footer.pngElements')}
+        </a>
+        </div>
+        <span className="hidden md:flex">{t('nav.code')}</span>
       </div>
     </footer>
   )

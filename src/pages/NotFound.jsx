@@ -18,7 +18,7 @@ export default function NotFound() {
         className="mt-8 inline-flex min-h-12 items-center justify-between gap-7 border border-ink bg-ink px-4 text-[13px] font-semibold tracking-[0.06em] text-paper uppercase"
         to="/"
       >
-        {t('notFound.home')}<span aria-hidden="true">↗</span>
+        {t('notFound.home')}<span aria-hidden="true">→</span>
       </Link>
     </section>
   )
