@@ -8,7 +8,7 @@ i18n.use(initReactI18next).init({
     en: { translation: en },
     hu: { translation: hu },
   },
-  lng: 'hu',
+  lng: 'en',
   fallbackLng: 'en',
   interpolation: {
     escapeValue: false,
@@ -19,6 +19,6 @@ i18n.on('languageChanged', (language) => {
   document.documentElement.lang = language
 })
 
-document.documentElement.lang = i18n.resolvedLanguage || 'hu'
+document.documentElement.lang = i18n.resolvedLanguage || 'en'
 
 export default i18n
