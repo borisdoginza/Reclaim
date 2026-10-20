@@ -59,7 +59,8 @@
 }
 
 .looks-title {
-  font-size: clamp(2.25rem, min(12vw, calc(100cqw / var(--looks-fit))), 3.5rem);
+  /* font-size: clamp(2.25rem, min(12vw, calc(100cqw / var(--looks-fit))), 3.5rem); */
+  font-size: clamp(36px,6vw,56px);
   overflow-wrap: break-word;
   text-wrap: balance;
 }

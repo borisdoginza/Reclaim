@@ -110,7 +110,7 @@ export default function LooksSection() {
         >
           <Label className="mb-3">{t('looks.eyebrow')}</Label>
           <h2
-            className="looks-title m-0 min-w-0 max-w-[720px] font-display leading-[0.92] font-normal tracking-[-0.055em] uppercase"
+            className="looks-title m-0 min-w-0  max-w-[720px] font-display leading-[0.92] tracking-[-0.055em] uppercase"
             id="looks-title"
           >
             {t('looks.title')}
