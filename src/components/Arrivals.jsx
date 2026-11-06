@@ -19,6 +19,7 @@ export default function Arrivals() {
   const offsetRef = useRef(0)
   const setWidthRef = useRef(0)
   const factorRef = useRef(0)
+  const velocityRef = useRef(0)
   const hoveredRef = useRef(false)
   const draggingRef = useRef(null)
   const cooldownUntilRef = useRef(0)
@@ -57,7 +58,8 @@ export default function Arrivals() {
 
     const tick = (time) => {
       if (previousTime !== undefined && setWidthRef.current > 0) {
-        const elapsed = Math.min((time - previousTime) / 1000, 0.05)
+        const elapsedMs = Math.min(time - previousTime, 50)
+        let movement = 0
 
         if (rampRef.current) {
           const progress = Math.min((time - rampRef.current.startedAt) / RAMP_DURATION, 1)
@@ -65,8 +67,20 @@ export default function Arrivals() {
           if (progress === 1) rampRef.current = null
         }
 
-        if (factorRef.current > 0 && !draggingRef.current) {
-          offsetRef.current = (offsetRef.current + PIXELS_PER_SECOND * factorRef.current * elapsed)
+        if (!reducedMotion && !draggingRef.current) {
+          if (Math.abs(velocityRef.current) >= 0.02) {
+            movement += velocityRef.current * elapsedMs
+            velocityRef.current *= 0.95 ** (elapsedMs / 16.67)
+            if (Math.abs(velocityRef.current) < 0.02) velocityRef.current = 0
+          }
+
+          movement += PIXELS_PER_SECOND * factorRef.current * (elapsedMs / 1000)
+        } else if (reducedMotion) {
+          velocityRef.current = 0
+        }
+
+        if (movement !== 0) {
+          offsetRef.current = ((offsetRef.current + movement) % setWidthRef.current + setWidthRef.current)
             % setWidthRef.current
           trackRef.current.style.transform = `translate3d(${-offsetRef.current}px, 0, 0)`
         }
@@ -78,7 +92,7 @@ export default function Arrivals() {
 
     frameId = requestAnimationFrame(tick)
     return () => cancelAnimationFrame(frameId)
-  }, [])
+  }, [reducedMotion])
 
   const pause = () => {
     rampRef.current = null
@@ -127,8 +141,11 @@ export default function Arrivals() {
       pointerId: event.pointerId,
       startX: event.clientX,
       startOffset: offsetRef.current,
+      lastX: event.clientX,
+      lastTime: event.timeStamp,
       moved: false,
     }
+    velocityRef.current = 0
     pause()
   }
 
@@ -137,11 +154,20 @@ export default function Arrivals() {
     if (!drag || drag.pointerId !== event.pointerId) return
 
     const delta = event.clientX - drag.startX
+    const sampleDelta = event.clientX - drag.lastX
+    const sampleElapsed = event.timeStamp - drag.lastTime
     if (Math.abs(delta) > 4) {
       if (!drag.moved) event.currentTarget.setPointerCapture(event.pointerId)
       drag.moved = true
       suppressClickRef.current = true
     }
+
+    if (drag.moved && sampleElapsed > 0) {
+      const instantaneousVelocity = -(sampleDelta / sampleElapsed)
+      velocityRef.current = 0.7 * velocityRef.current + 0.3 * instantaneousVelocity
+    }
+    drag.lastX = event.clientX
+    drag.lastTime = event.timeStamp
 
     if (!drag.moved || setWidthRef.current <= 0) return
 
@@ -166,9 +192,11 @@ export default function Arrivals() {
   }
 
   const handlePointerCancel = (event) => {
-    if (draggingRef.current?.pointerId !== event.pointerId) return
+    const drag = draggingRef.current
+    if (drag?.pointerId !== event.pointerId) return
     draggingRef.current = null
-    cooldownUntilRef.current = Date.now() + RESUME_DELAY
+    cooldownUntilRef.current = drag.moved ? Date.now() + RESUME_DELAY : Date.now()
+    if (!drag.moved) velocityRef.current = 0
     resume()
   }
 
@@ -218,7 +246,6 @@ export default function Arrivals() {
           event.stopPropagation()
           suppressClickRef.current = false
         }}
-        style={{ touchAction: 'pan-y' }}
       >
         <div ref={trackRef} className="arrivals-track">
           {[0, 1, 2].map((copy) => (
