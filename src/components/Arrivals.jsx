@@ -14,105 +14,173 @@ export default function Arrivals() {
   const { t } = useTranslation()
   const reducedMotion = useMediaQuery('(prefers-reduced-motion: reduce)')
   const swiperRef = useRef(null)
-  const interactionPaused = useRef(false)
-  const resumeSegment = useRef(null)
+  const hovered = useRef(false)
+  const touching = useRef(false)
+  const swiping = useRef(false)
+  const startAutoplayRef = useRef(() => {})
+  const swipeCooldown = useRef(false)
+  const resumeTimer = useRef(null)
+  const pausedTransition = useRef(null)
   const resumeListener = useRef(null)
-  const activeSegment = useRef(null)
+  const rampListener = useRef(null)
+  const ramping = useRef(false)
+  const rampPending = useRef(false)
+  const baseSpeed = 7000
 
-  const stopAutoplay = useCallback((preservePosition = false) => {
+  const startAutoplay = useCallback((ramp = false) => {
+    if (ramp) rampPending.current = true
     const swiper = swiperRef.current
-    if (!swiper) return
+    if (!swiper || reducedMotion || hovered.current || touching.current || swiping.current || swiper.autoplay?.running) return
 
-    if (resumeListener.current) {
-      swiper.wrapperEl.removeEventListener('transitionend', resumeListener.current)
-      resumeListener.current = null
-    }
-
-    if (!preservePosition) {
-      resumeSegment.current = null
-      activeSegment.current = null
-    }
-
-    const autoplayRunning = swiper.autoplay?.running
-    if (!autoplayRunning && !swiper.animating) return
-    const translate = swiper.getTranslate()
-    if (preservePosition) {
-      const target = swiper.rtlTranslate
-        ? swiper.slidesGrid[swiper.activeIndex]
-        : -swiper.slidesGrid[swiper.activeIndex]
-      const remainingDistance = Math.abs(target - translate)
-      const previousSegment = activeSegment.current
-      const totalDistance = previousSegment
-        ? Math.abs(previousSegment.target - previousSegment.from)
-        : Math.abs(target - swiper.previousTranslate)
-      const remainingDuration = previousSegment
-        ? previousSegment.duration * remainingDistance / totalDistance
-        : swiper.params.speed * remainingDistance / totalDistance
-
-      resumeSegment.current = totalDistance > 0 && remainingDistance > 0
-        ? {
-            target,
-            duration: remainingDuration,
+    const resumeTransition = () => {
+      if (!pausedTransition.current) {
+        if (rampPending.current) {
+          ramping.current = true
+          swiper.params.speed = baseSpeed / 2
+          swiper.wrapperEl.style.transitionTimingFunction = 'cubic-bezier(0.33, 0, 0.8, 0.9)'
+          const handleRampEnd = (event) => {
+            if (event.target !== swiper.wrapperEl || event.propertyName !== 'transform') return
+            swiper.wrapperEl.removeEventListener('transitionend', handleRampEnd)
+            rampListener.current = null
+            ramping.current = false
+            swiper.params.speed = baseSpeed
+            swiper.wrapperEl.style.transitionTimingFunction = 'linear'
           }
-        : null
-    }
+          rampListener.current = handleRampEnd
+          swiper.wrapperEl.addEventListener('transitionend', handleRampEnd)
+          rampPending.current = false
+        }
+        swiper.autoplay?.start()
+        return
+      }
 
-    if (autoplayRunning) swiper.autoplay.stop()
-    activeSegment.current = null
-    swiper.setTransition(0)
-    swiper.setTranslate(translate)
-    swiper.animating = false
-  }, [])
-
-  const startAutoplay = useCallback(() => {
-    const swiper = swiperRef.current
-    if (!swiper || swiper.autoplay.running || reducedMotion || interactionPaused.current) return
-
-    const segment = resumeSegment.current
-    resumeSegment.current = null
-
-    if (segment) {
-      const from = swiper.getTranslate()
+      const { target, duration } = pausedTransition.current
+      pausedTransition.current = null
       const handleTransitionEnd = (event) => {
         if (event.target !== swiper.wrapperEl || event.propertyName !== 'transform') return
         swiper.wrapperEl.removeEventListener('transitionend', handleTransitionEnd)
         resumeListener.current = null
-        activeSegment.current = null
         swiper.animating = false
         swiper.setTransition(0)
-        swiper.autoplay.start()
+        swiper.params.speed = baseSpeed
+        swiper.wrapperEl.style.transitionTimingFunction = 'linear'
+        startAutoplayRef.current()
       }
-      activeSegment.current = { ...segment, from }
       resumeListener.current = handleTransitionEnd
       swiper.wrapperEl.addEventListener('transitionend', handleTransitionEnd)
-      swiper.setTransition(segment.duration)
-      swiper.setTranslate(segment.target)
+      swiper.setTransition(duration)
+      swiper.setTranslate(target)
       swiper.animating = true
-      return
     }
 
-    swiper.autoplay.start()
-  }, [reducedMotion])
+    if (swiper.animating) {
+      if (resumeListener.current) return
+      const current = swiper.getTranslate()
+      const target = swiper.rtlTranslate
+        ? swiper.slidesGrid[swiper.activeIndex]
+        : -swiper.slidesGrid[swiper.activeIndex]
+      const totalDistance = Math.abs(target - swiper.previousTranslate)
+      const remainingDistance = Math.abs(target - current)
+      const duration = totalDistance > 0
+        ? swiper.params.speed * remainingDistance / totalDistance
+        : 0
+      pausedTransition.current = duration > 0 && remainingDistance > 0
+        ? { target, duration }
+        : null
+      swiper.setTransition(0)
+      swiper.setTranslate(current)
+      swiper.animating = false
+    }
+
+    resumeTransition()
+  }, [baseSpeed, reducedMotion])
+
+  const resumeAutoplay = useCallback(() => {
+    if (hovered.current || touching.current || swiping.current) return
+    if (swipeCooldown.current) {
+      if (resumeTimer.current) return
+      resumeTimer.current = setTimeout(() => {
+        resumeTimer.current = null
+        swipeCooldown.current = false
+        startAutoplay(true)
+      }, 3000)
+      return
+    }
+    startAutoplay()
+  }, [startAutoplay])
+
+  useEffect(() => {
+    startAutoplayRef.current = startAutoplay
+  }, [startAutoplay])
+
+  const pauseAutoplay = useCallback((preserveTransition = true, cancelCooldown = false) => {
+    const swiper = swiperRef.current
+    if (!swiper) return
+
+    if (cancelCooldown && resumeTimer.current) {
+      clearTimeout(resumeTimer.current)
+      resumeTimer.current = null
+    }
+    if (resumeListener.current) {
+      swiper.wrapperEl.removeEventListener('transitionend', resumeListener.current)
+      resumeListener.current = null
+    }
+    if (rampListener.current) {
+      swiper.wrapperEl.removeEventListener('transitionend', rampListener.current)
+      rampListener.current = null
+      ramping.current = false
+      swiper.params.speed = baseSpeed
+      swiper.wrapperEl.style.transitionTimingFunction = 'linear'
+    }
+
+    if (!preserveTransition) pausedTransition.current = null
+    if (swiper.autoplay?.running) swiper.autoplay.stop()
+    if (!swiper.animating) return
+
+    const current = swiper.getTranslate()
+    const target = swiper.rtlTranslate
+      ? swiper.slidesGrid[swiper.activeIndex]
+      : -swiper.slidesGrid[swiper.activeIndex]
+    const totalDistance = Math.abs(target - swiper.previousTranslate)
+    const remainingDistance = Math.abs(target - current)
+    const duration = totalDistance > 0
+      ? swiper.params.speed * remainingDistance / totalDistance
+      : 0
+    pausedTransition.current = preserveTransition && duration > 0 && remainingDistance > 0
+      ? { target, duration }
+      : null
+    swiper.setTransition(0)
+    swiper.setTranslate(current)
+    swiper.animating = false
+  }, [baseSpeed])
 
   useEffect(() => {
     const swiper = swiperRef.current
     if (!swiper) return
 
     if (reducedMotion) {
-      stopAutoplay(false)
-    } else if (!interactionPaused.current) {
-      startAutoplay()
+      pauseAutoplay(false, true)
+    } else {
+      resumeAutoplay()
     }
-  }, [reducedMotion, startAutoplay, stopAutoplay])
+  }, [pauseAutoplay, reducedMotion, resumeAutoplay])
 
-  function pauseAutoplay() {
-    interactionPaused.current = true
-    stopAutoplay(true)
-  }
+  useEffect(() => () => {
+    if (resumeTimer.current) clearTimeout(resumeTimer.current)
+    const swiper = swiperRef.current
+    if (swiper && resumeListener.current) {
+      swiper.wrapperEl.removeEventListener('transitionend', resumeListener.current)
+    }
+    if (swiper && rampListener.current) {
+      swiper.wrapperEl.removeEventListener('transitionend', rampListener.current)
+    }
+  }, [])
 
-  function resumeAutoplay() {
-    interactionPaused.current = false
-    startAutoplay()
+  const endSwipe = () => {
+    if (!touching.current) return
+    touching.current = false
+    swiping.current = false
+    resumeAutoplay()
   }
 
   return (
@@ -139,14 +207,14 @@ export default function Arrivals() {
       </div>
       <div
         className="mx-auto w-[min(calc(100%-40px),1280px)] md:px-0"
-        onMouseEnter={pauseAutoplay}
-        onMouseLeave={resumeAutoplay}
-        onTouchStart={pauseAutoplay}
-        onTouchMove={() => {
-          resumeSegment.current = null
+        onMouseEnter={() => {
+          hovered.current = true
+          pauseAutoplay()
         }}
-        onTouchEnd={resumeAutoplay}
-        onTouchCancel={resumeAutoplay}
+        onMouseLeave={() => {
+          hovered.current = false
+          resumeAutoplay()
+        }}
       >
         <Swiper
           className="arrivals-slider"
@@ -159,12 +227,29 @@ export default function Arrivals() {
             delay: 0,
             disableOnInteraction: false,
             pauseOnMouseEnter: false,
-            waitForTransition: false,
+            waitForTransition: true,
           }}
           onSwiper={(swiper) => {
             swiperRef.current = swiper
-            if (reducedMotion) stopAutoplay()
+            swiper.params.speed = baseSpeed
+            if (reducedMotion) {
+              swiper.autoplay?.stop()
+            } else {
+              startAutoplay()
+            }
           }}
+          onTouchStart={() => {
+            touching.current = true
+            pauseAutoplay(true, true)
+          }}
+          onSliderFirstMove={() => {
+            swiping.current = true
+            swipeCooldown.current = true
+            pausedTransition.current = null
+            pauseAutoplay(false, true)
+          }}
+          onTouchEnd={endSwipe}
+          onTouchCancel={endSwipe}
           breakpoints={{
             768: { slidesPerView: 3, spaceBetween: 20 },
             1024: { slidesPerView: 4, spaceBetween: 20 },
