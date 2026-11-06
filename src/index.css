@@ -1,7 +1,49 @@
 @import "tailwindcss";
 
-.arrivals-slider .swiper-wrapper {
-  @apply ease-linear;
+.arrivals-viewport {
+  overflow: hidden;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.arrivals-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
+
+.arrivals-set {
+  display: flex;
+  flex: none;
+  gap: 12px;
+  padding-right: 12px;
+}
+
+.arrivals-card {
+  flex: none;
+  width: calc((var(--arrivals-width) - 12px) / 2);
+}
+
+.arrivals-viewport:active {
+  cursor: grabbing;
+}
+
+@media (min-width: 768px) {
+  .arrivals-set {
+    gap: 20px;
+    padding-right: 20px;
+  }
+
+  .arrivals-card {
+    width: calc((var(--arrivals-width) - 40px) / 3);
+  }
+}
+
+@media (min-width: 1024px) {
+  .arrivals-card {
+    width: calc((var(--arrivals-width) - 60px) / 4);
+  }
 }
 
 .leaflet-tile-pane {

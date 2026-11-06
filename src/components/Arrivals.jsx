@@ -1,7 +1,4 @@
-import { useCallback, useEffect, useRef } from 'react'
-import { Autoplay } from 'swiper/modules'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import 'swiper/css'
+import { useCallback, useEffect, useLayoutEffect, useRef } from 'react'
 import products from '../data/products.js'
 import { useTranslation } from 'react-i18next'
 import FlowerMark from './FlowerMark'
@@ -10,177 +7,169 @@ import useMediaQuery from '../hooks/useMediaQuery'
 import Divider from './Divider'
 import Reveal from './Reveal'
 
+const PIXELS_PER_SECOND = 35
+const RESUME_DELAY = 3000
+const RAMP_DURATION = 1500
+
 export default function Arrivals() {
   const { t } = useTranslation()
   const reducedMotion = useMediaQuery('(prefers-reduced-motion: reduce)')
-  const swiperRef = useRef(null)
-  const hovered = useRef(false)
-  const touching = useRef(false)
-  const swiping = useRef(false)
-  const startAutoplayRef = useRef(() => {})
-  const swipeCooldown = useRef(false)
-  const resumeTimer = useRef(null)
-  const pausedTransition = useRef(null)
-  const resumeListener = useRef(null)
-  const rampListener = useRef(null)
-  const ramping = useRef(false)
-  const rampPending = useRef(false)
-  const baseSpeed = 7000
+  const viewportRef = useRef(null)
+  const trackRef = useRef(null)
+  const offsetRef = useRef(0)
+  const setWidthRef = useRef(0)
+  const factorRef = useRef(0)
+  const hoveredRef = useRef(false)
+  const draggingRef = useRef(null)
+  const cooldownUntilRef = useRef(0)
+  const resumeTimerRef = useRef(null)
+  const rampRef = useRef(null)
+  const suppressClickRef = useRef(false)
 
-  const startAutoplay = useCallback((ramp = false) => {
-    if (ramp) rampPending.current = true
-    const swiper = swiperRef.current
-    if (!swiper || reducedMotion || hovered.current || touching.current || swiping.current || swiper.autoplay?.running) return
+  useLayoutEffect(() => {
+    const viewport = viewportRef.current
+    const track = trackRef.current
+    if (!viewport || !track) return undefined
 
-    const resumeTransition = () => {
-      if (!pausedTransition.current) {
-        if (rampPending.current) {
-          ramping.current = true
-          swiper.params.speed = baseSpeed / 2
-          swiper.wrapperEl.style.transitionTimingFunction = 'cubic-bezier(0.33, 0, 0.8, 0.9)'
-          const handleRampEnd = (event) => {
-            if (event.target !== swiper.wrapperEl || event.propertyName !== 'transform') return
-            swiper.wrapperEl.removeEventListener('transitionend', handleRampEnd)
-            rampListener.current = null
-            ramping.current = false
-            swiper.params.speed = baseSpeed
-            swiper.wrapperEl.style.transitionTimingFunction = 'linear'
-          }
-          rampListener.current = handleRampEnd
-          swiper.wrapperEl.addEventListener('transitionend', handleRampEnd)
-          rampPending.current = false
-        }
-        swiper.autoplay?.start()
-        return
+    const measure = () => {
+      viewport.style.setProperty('--arrivals-width', `${viewport.clientWidth}px`)
+      const [firstSet, secondSet] = track.children
+      if (!firstSet || !secondSet) return
+
+      setWidthRef.current = secondSet.offsetLeft - firstSet.offsetLeft
+      if (setWidthRef.current > 0) {
+        offsetRef.current = ((offsetRef.current % setWidthRef.current) + setWidthRef.current)
+          % setWidthRef.current
+        trackRef.current.style.transform = `translate3d(${-offsetRef.current}px, 0, 0)`
       }
-
-      const { target, duration } = pausedTransition.current
-      pausedTransition.current = null
-      const handleTransitionEnd = (event) => {
-        if (event.target !== swiper.wrapperEl || event.propertyName !== 'transform') return
-        swiper.wrapperEl.removeEventListener('transitionend', handleTransitionEnd)
-        resumeListener.current = null
-        swiper.animating = false
-        swiper.setTransition(0)
-        swiper.params.speed = baseSpeed
-        swiper.wrapperEl.style.transitionTimingFunction = 'linear'
-        startAutoplayRef.current()
-      }
-      resumeListener.current = handleTransitionEnd
-      swiper.wrapperEl.addEventListener('transitionend', handleTransitionEnd)
-      swiper.setTransition(duration)
-      swiper.setTranslate(target)
-      swiper.animating = true
     }
 
-    if (swiper.animating) {
-      if (resumeListener.current) return
-      const current = swiper.getTranslate()
-      const target = swiper.rtlTranslate
-        ? swiper.slidesGrid[swiper.activeIndex]
-        : -swiper.slidesGrid[swiper.activeIndex]
-      const totalDistance = Math.abs(target - swiper.previousTranslate)
-      const remainingDistance = Math.abs(target - current)
-      const duration = totalDistance > 0
-        ? swiper.params.speed * remainingDistance / totalDistance
-        : 0
-      pausedTransition.current = duration > 0 && remainingDistance > 0
-        ? { target, duration }
-        : null
-      swiper.setTransition(0)
-      swiper.setTranslate(current)
-      swiper.animating = false
-    }
+    const observer = new ResizeObserver(measure)
+    observer.observe(viewport)
+    measure()
 
-    resumeTransition()
-  }, [baseSpeed, reducedMotion])
-
-  const resumeAutoplay = useCallback(() => {
-    if (hovered.current || touching.current || swiping.current) return
-    if (swipeCooldown.current) {
-      if (resumeTimer.current) return
-      resumeTimer.current = setTimeout(() => {
-        resumeTimer.current = null
-        swipeCooldown.current = false
-        startAutoplay(true)
-      }, 3000)
-      return
-    }
-    startAutoplay()
-  }, [startAutoplay])
-
-  useEffect(() => {
-    startAutoplayRef.current = startAutoplay
-  }, [startAutoplay])
-
-  const pauseAutoplay = useCallback((preserveTransition = true, cancelCooldown = false) => {
-    const swiper = swiperRef.current
-    if (!swiper) return
-
-    if (cancelCooldown && resumeTimer.current) {
-      clearTimeout(resumeTimer.current)
-      resumeTimer.current = null
-    }
-    if (resumeListener.current) {
-      swiper.wrapperEl.removeEventListener('transitionend', resumeListener.current)
-      resumeListener.current = null
-    }
-    if (rampListener.current) {
-      swiper.wrapperEl.removeEventListener('transitionend', rampListener.current)
-      rampListener.current = null
-      ramping.current = false
-      swiper.params.speed = baseSpeed
-      swiper.wrapperEl.style.transitionTimingFunction = 'linear'
-    }
-
-    if (!preserveTransition) pausedTransition.current = null
-    if (swiper.autoplay?.running) swiper.autoplay.stop()
-    if (!swiper.animating) return
-
-    const current = swiper.getTranslate()
-    const target = swiper.rtlTranslate
-      ? swiper.slidesGrid[swiper.activeIndex]
-      : -swiper.slidesGrid[swiper.activeIndex]
-    const totalDistance = Math.abs(target - swiper.previousTranslate)
-    const remainingDistance = Math.abs(target - current)
-    const duration = totalDistance > 0
-      ? swiper.params.speed * remainingDistance / totalDistance
-      : 0
-    pausedTransition.current = preserveTransition && duration > 0 && remainingDistance > 0
-      ? { target, duration }
-      : null
-    swiper.setTransition(0)
-    swiper.setTranslate(current)
-    swiper.animating = false
-  }, [baseSpeed])
-
-  useEffect(() => {
-    const swiper = swiperRef.current
-    if (!swiper) return
-
-    if (reducedMotion) {
-      pauseAutoplay(false, true)
-    } else {
-      resumeAutoplay()
-    }
-  }, [pauseAutoplay, reducedMotion, resumeAutoplay])
-
-  useEffect(() => () => {
-    if (resumeTimer.current) clearTimeout(resumeTimer.current)
-    const swiper = swiperRef.current
-    if (swiper && resumeListener.current) {
-      swiper.wrapperEl.removeEventListener('transitionend', resumeListener.current)
-    }
-    if (swiper && rampListener.current) {
-      swiper.wrapperEl.removeEventListener('transitionend', rampListener.current)
-    }
+    return () => observer.disconnect()
   }, [])
 
-  const endSwipe = () => {
-    if (!touching.current) return
-    touching.current = false
-    swiping.current = false
-    resumeAutoplay()
+  useEffect(() => {
+    let frameId
+    let previousTime
+
+    const tick = (time) => {
+      if (previousTime !== undefined && setWidthRef.current > 0) {
+        const elapsed = Math.min((time - previousTime) / 1000, 0.05)
+
+        if (rampRef.current) {
+          const progress = Math.min((time - rampRef.current.startedAt) / RAMP_DURATION, 1)
+          factorRef.current = progress
+          if (progress === 1) rampRef.current = null
+        }
+
+        if (factorRef.current > 0 && !draggingRef.current) {
+          offsetRef.current = (offsetRef.current + PIXELS_PER_SECOND * factorRef.current * elapsed)
+            % setWidthRef.current
+          trackRef.current.style.transform = `translate3d(${-offsetRef.current}px, 0, 0)`
+        }
+      }
+
+      previousTime = time
+      frameId = requestAnimationFrame(tick)
+    }
+
+    frameId = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(frameId)
+  }, [])
+
+  const pause = () => {
+    rampRef.current = null
+    factorRef.current = 0
+  }
+
+  const resume = useCallback(() => {
+    if (reducedMotion || hoveredRef.current || draggingRef.current) return
+
+    if (Date.now() < cooldownUntilRef.current) {
+      factorRef.current = 0
+      if (resumeTimerRef.current) clearTimeout(resumeTimerRef.current)
+      resumeTimerRef.current = setTimeout(() => {
+        resumeTimerRef.current = null
+        if (reducedMotion || hoveredRef.current || draggingRef.current) return
+        rampRef.current = { startedAt: performance.now() }
+      }, Math.max(cooldownUntilRef.current - Date.now(), 0))
+      return
+    }
+
+    factorRef.current = 1
+    rampRef.current = null
+  }, [reducedMotion])
+
+  useEffect(() => {
+    if (reducedMotion) {
+      factorRef.current = 0
+      rampRef.current = null
+      if (resumeTimerRef.current) {
+        clearTimeout(resumeTimerRef.current)
+        resumeTimerRef.current = null
+      }
+    } else {
+      resume()
+    }
+  }, [reducedMotion, resume])
+
+  useEffect(() => () => {
+    if (resumeTimerRef.current) clearTimeout(resumeTimerRef.current)
+  }, [])
+
+  const handlePointerDown = (event) => {
+    if (!event.isPrimary || (event.pointerType === 'mouse' && event.button !== 0)) return
+
+    draggingRef.current = {
+      pointerId: event.pointerId,
+      startX: event.clientX,
+      startOffset: offsetRef.current,
+      moved: false,
+    }
+    pause()
+  }
+
+  const handlePointerMove = (event) => {
+    const drag = draggingRef.current
+    if (!drag || drag.pointerId !== event.pointerId) return
+
+    const delta = event.clientX - drag.startX
+    if (Math.abs(delta) > 4) {
+      if (!drag.moved) event.currentTarget.setPointerCapture(event.pointerId)
+      drag.moved = true
+      suppressClickRef.current = true
+    }
+
+    if (!drag.moved || setWidthRef.current <= 0) return
+
+    offsetRef.current = ((drag.startOffset - delta) % setWidthRef.current + setWidthRef.current)
+      % setWidthRef.current
+    trackRef.current.style.transform = `translate3d(${-offsetRef.current}px, 0, 0)`
+  }
+
+  const handlePointerUp = (event) => {
+    const drag = draggingRef.current
+    if (!drag || drag.pointerId !== event.pointerId) return
+
+    draggingRef.current = null
+    cooldownUntilRef.current = drag.moved ? Date.now() + RESUME_DELAY : Date.now()
+    resume()
+
+    if (suppressClickRef.current) {
+      window.setTimeout(() => {
+        suppressClickRef.current = false
+      }, 0)
+    }
+  }
+
+  const handlePointerCancel = (event) => {
+    if (draggingRef.current?.pointerId !== event.pointerId) return
+    draggingRef.current = null
+    cooldownUntilRef.current = Date.now() + RESUME_DELAY
+    resume()
   }
 
   return (
@@ -201,67 +190,52 @@ export default function Arrivals() {
           </h2>
           <FlowerMark className="h-[30px] w-[30px] shrink-0 fill-current" />
         </div>
-        {/* <p className="mt-[18px] mb-0 text-[13px] text-secondary">
-          {t('arrivals.swipeHint')}
-        </p> */}
       </div>
       <div
-        className="mx-auto w-[min(calc(100%-40px),1280px)] md:px-0"
-        onMouseEnter={() => {
-          hovered.current = true
-          pauseAutoplay()
+        ref={viewportRef}
+        className="arrivals-viewport mx-auto w-[min(calc(100%-40px),1280px)] md:px-0"
+        role="region"
+        aria-label={t('arrivals.listLabel')}
+        onPointerEnter={(event) => {
+          if (event.pointerType !== 'mouse') return
+          hoveredRef.current = true
+          pause()
         }}
-        onMouseLeave={() => {
-          hovered.current = false
-          resumeAutoplay()
+        onPointerLeave={(event) => {
+          if (event.pointerType !== 'mouse') return
+          hoveredRef.current = false
+          resume()
         }}
+        onPointerDown={handlePointerDown}
+        onPointerMove={handlePointerMove}
+        onPointerUp={handlePointerUp}
+        onPointerCancel={handlePointerCancel}
+        onLostPointerCapture={handlePointerCancel}
+        onDragStart={(event) => event.preventDefault()}
+        onClickCapture={(event) => {
+          if (!suppressClickRef.current) return
+          event.preventDefault()
+          event.stopPropagation()
+          suppressClickRef.current = false
+        }}
+        style={{ touchAction: 'pan-y' }}
       >
-        <Swiper
-          className="arrivals-slider"
-          modules={[Autoplay]}
-          slidesPerView={2}
-          spaceBetween={12}
-          loop
-          speed={7000}
-          autoplay={{
-            delay: 0,
-            disableOnInteraction: false,
-            pauseOnMouseEnter: false,
-            waitForTransition: true,
-          }}
-          onSwiper={(swiper) => {
-            swiperRef.current = swiper
-            swiper.params.speed = baseSpeed
-            if (reducedMotion) {
-              swiper.autoplay?.stop()
-            } else {
-              startAutoplay()
-            }
-          }}
-          onTouchStart={() => {
-            touching.current = true
-            pauseAutoplay(true, true)
-          }}
-          onSliderFirstMove={() => {
-            swiping.current = true
-            swipeCooldown.current = true
-            pausedTransition.current = null
-            pauseAutoplay(false, true)
-          }}
-          onTouchEnd={endSwipe}
-          onTouchCancel={endSwipe}
-          breakpoints={{
-            768: { slidesPerView: 3, spaceBetween: 20 },
-            1024: { slidesPerView: 4, spaceBetween: 20 },
-          }}
-          aria-label={t('arrivals.listLabel')}
-        >
-          {products.map((product) => (
-            <SwiperSlide key={product.id}>
-              <ProductCard product={product} />
-            </SwiperSlide>
+        <div ref={trackRef} className="arrivals-track">
+          {[0, 1, 2].map((copy) => (
+            <div
+              key={copy}
+              className="arrivals-set"
+              aria-hidden={copy === 1}
+              inert={copy === 1}
+            >
+              {products.map((product) => (
+                <div className="arrivals-card" key={`${copy}-${product.id}`}>
+                  <ProductCard product={product} />
+                </div>
+              ))}
+            </div>
           ))}
-        </Swiper>
+        </div>
       </div>
       <div className="mx-auto w-[min(calc(100%-40px),1280px)] pt-[24px]">
         <a
