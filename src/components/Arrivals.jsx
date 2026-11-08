@@ -33,6 +33,28 @@ export default function Arrivals() {
   const resumeTimerRef = useRef(null)
   const rampRef = useRef(null)
   const suppressClickRef = useRef(false)
+  const pointerPositionRef = useRef(null)
+  const pointerHoverRef = useRef(null)
+
+  const updatePointerHover = () => {
+    const pointerPosition = pointerPositionRef.current
+    if (!pointerPosition) return
+
+    const element = document.elementFromPoint(pointerPosition.x, pointerPosition.y)
+    const link = element?.closest('.product-card-image-link')
+    const nextHover = viewportRef.current?.contains(link) ? link : null
+
+    if (pointerHoverRef.current === nextHover) return
+    pointerHoverRef.current?.classList.remove('is-pointer-over')
+    nextHover?.classList.add('is-pointer-over')
+    pointerHoverRef.current = nextHover
+  }
+
+  const clearPointerHover = () => {
+    pointerPositionRef.current = null
+    pointerHoverRef.current?.classList.remove('is-pointer-over')
+    pointerHoverRef.current = null
+  }
 
   useLayoutEffect(() => {
     const viewport = viewportRef.current
@@ -90,6 +112,7 @@ export default function Arrivals() {
           offsetRef.current = ((offsetRef.current + movement) % setWidthRef.current + setWidthRef.current)
             % setWidthRef.current
           trackRef.current.style.transform = `translate3d(${-offsetRef.current}px, 0, 0)`
+          updatePointerHover()
         }
       }
 
@@ -167,6 +190,11 @@ export default function Arrivals() {
   }
 
   const handlePointerMove = (event) => {
+    if (event.pointerType === 'mouse') {
+      pointerPositionRef.current = { x: event.clientX, y: event.clientY }
+      updatePointerHover()
+    }
+
     const drag = draggingRef.current
     if (!drag || drag.pointerId !== event.pointerId) return
 
@@ -242,11 +270,14 @@ export default function Arrivals() {
         onPointerEnter={(event) => {
           if (event.pointerType !== 'mouse') return
           hoveredRef.current = true
+          pointerPositionRef.current = { x: event.clientX, y: event.clientY }
+          updatePointerHover()
           pause()
         }}
         onPointerLeave={(event) => {
           if (event.pointerType !== 'mouse') return
           hoveredRef.current = false
+          clearPointerHover()
           resume()
         }}
         onPointerDown={handlePointerDown}
@@ -267,11 +298,10 @@ export default function Arrivals() {
               key={copy}
               className="arrivals-set"
               aria-hidden={copy === 1}
-              inert={copy === 1}
             >
               {products.map((product) => (
                 <div className="arrivals-card" key={`${copy}-${product.id}`}>
-                  <ProductCard product={product} />
+                  <ProductCard product={product} tabIndex={copy === 1 ? -1 : undefined} />
                 </div>
               ))}
             </div>

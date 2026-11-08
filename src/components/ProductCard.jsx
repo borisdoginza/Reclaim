@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 
-export default function ProductCard({ product }) {
+export default function ProductCard({ product, tabIndex }) {
   const { t } = useTranslation()
   const name = t(`products.${product.id}.name`, { defaultValue: product.name })
   const category = t(`products.${product.id}.category`, { defaultValue: product.category })
@@ -10,11 +10,12 @@ export default function ProductCard({ product }) {
   return (
     <article className="h-full">
       <a
-        className="block overflow-hidden bg-accent"
+        className="product-card-image-link block overflow-hidden bg-accent tracking-normal"
         href="https://www.instagram.com/reclaimvintage.bp/"
         target="_blank"
         rel="noreferrer"
         aria-label={t('arrivals.askAbout', { name })}
+        tabIndex={tabIndex}
       >
         <img
           className="block aspect-[4/5] w-full object-cover transition-transform duration-250 hover:scale-[1.025]"
