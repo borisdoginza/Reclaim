@@ -11,8 +11,15 @@ const PIXELS_PER_SECOND = 35
 const RESUME_DELAY = 3000
 const RAMP_DURATION = 1500
 
+const FRICTION = 0.965          
+const VELOCITY_WINDOW_MS = 100  
+const STALE_MS = 80             
+const MAX_VELOCITY = 4
+const MIN_SAMPLE_MS = 16 
+
 export default function Arrivals() {
   const { t } = useTranslation()
+  const samplesRef = useRef([])
   const reducedMotion = useMediaQuery('(prefers-reduced-motion: reduce)')
   const viewportRef = useRef(null)
   const trackRef = useRef(null)
@@ -70,7 +77,7 @@ export default function Arrivals() {
         if (!reducedMotion && !draggingRef.current) {
           if (Math.abs(velocityRef.current) >= 0.02) {
             movement += velocityRef.current * elapsedMs
-            velocityRef.current *= 0.95 ** (elapsedMs / 16.67)
+            velocityRef.current *= FRICTION ** (elapsedMs / 16.67)
             if (Math.abs(velocityRef.current) < 0.02) velocityRef.current = 0
           }
 
@@ -134,6 +141,17 @@ export default function Arrivals() {
     if (resumeTimerRef.current) clearTimeout(resumeTimerRef.current)
   }, [])
 
+  const getReleaseVelocity = (releaseTime) => {
+    const samples = samplesRef.current
+    if (samples.length < 2) return 0
+    const last = samples[samples.length - 1]
+    if (releaseTime - last.t > STALE_MS) return 0
+    const first = samples[0]
+    const dt = Math.max(last.t - first.t, MIN_SAMPLE_MS)
+    const v = -(last.x - first.x) / dt
+    return Math.max(-MAX_VELOCITY, Math.min(MAX_VELOCITY, v))
+}
+
   const handlePointerDown = (event) => {
     if (!event.isPrimary || (event.pointerType === 'mouse' && event.button !== 0)) return
 
@@ -141,11 +159,10 @@ export default function Arrivals() {
       pointerId: event.pointerId,
       startX: event.clientX,
       startOffset: offsetRef.current,
-      lastX: event.clientX,
-      lastTime: event.timeStamp,
       moved: false,
     }
     velocityRef.current = 0
+    samplesRef.current = [{ x: event.clientX, t: event.timeStamp }]
     pause()
   }
 
@@ -154,20 +171,17 @@ export default function Arrivals() {
     if (!drag || drag.pointerId !== event.pointerId) return
 
     const delta = event.clientX - drag.startX
-    const sampleDelta = event.clientX - drag.lastX
-    const sampleElapsed = event.timeStamp - drag.lastTime
     if (Math.abs(delta) > 4) {
       if (!drag.moved) event.currentTarget.setPointerCapture(event.pointerId)
       drag.moved = true
       suppressClickRef.current = true
     }
 
-    if (drag.moved && sampleElapsed > 0) {
-      const instantaneousVelocity = -(sampleDelta / sampleElapsed)
-      velocityRef.current = 0.7 * velocityRef.current + 0.3 * instantaneousVelocity
+    const samples = samplesRef.current
+    samples.push({ x: event.clientX, t: event.timeStamp })
+    while (samples.length > 2 && event.timeStamp - samples[0].t > VELOCITY_WINDOW_MS) {
+      samples.shift()
     }
-    drag.lastX = event.clientX
-    drag.lastTime = event.timeStamp
 
     if (!drag.moved || setWidthRef.current <= 0) return
 
@@ -181,6 +195,7 @@ export default function Arrivals() {
     if (!drag || drag.pointerId !== event.pointerId) return
 
     draggingRef.current = null
+    velocityRef.current = drag.moved ? getReleaseVelocity(event.timeStamp) : 0
     cooldownUntilRef.current = drag.moved ? Date.now() + RESUME_DELAY : Date.now()
     resume()
 
@@ -196,7 +211,7 @@ export default function Arrivals() {
     if (drag?.pointerId !== event.pointerId) return
     draggingRef.current = null
     cooldownUntilRef.current = drag.moved ? Date.now() + RESUME_DELAY : Date.now()
-    if (!drag.moved) velocityRef.current = 0
+    velocityRef.current = drag.moved ? getReleaseVelocity(event.timeStamp) : 0
     resume()
   }
 
@@ -238,7 +253,6 @@ export default function Arrivals() {
         onPointerMove={handlePointerMove}
         onPointerUp={handlePointerUp}
         onPointerCancel={handlePointerCancel}
-        onLostPointerCapture={handlePointerCancel}
         onDragStart={(event) => event.preventDefault()}
         onClickCapture={(event) => {
           if (!suppressClickRef.current) return
