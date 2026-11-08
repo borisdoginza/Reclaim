@@ -1,11 +1,10 @@
 import { useEffect, useMemo } from 'react'
 import L from 'leaflet'
 import { MapContainer, Marker, TileLayer, useMap } from 'react-leaflet'
-import { renderToStaticMarkup } from 'react-dom/server'
 import { useTranslation } from 'react-i18next'
 import location from '../data/location.json'
 import { TILE_LAYER_URL } from '../config/map'
-import FlowerMark from './FlowerMark'
+import MapLogo from '../assets/images/design-pieces/inverted-logo.png'
 
 function InvalidateSizeOnResize() {
   const map = useMap()
@@ -28,11 +27,8 @@ function InvalidateSizeOnResize() {
 
 export default function LeafletMap() {
   const { t } = useTranslation()
-  const marker = useMemo(() => L.divIcon({
-    className: 'reclaim-map-marker',
-    html: renderToStaticMarkup(
-      <FlowerMark className="h-8 w-8 fill-ink" />,
-    ),
+  const marker = useMemo(() => L.icon({
+    iconUrl: MapLogo,
     iconSize: [40, 40],
     iconAnchor: [20, 20],
   }), [])
